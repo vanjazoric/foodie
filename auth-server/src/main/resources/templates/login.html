@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="fragments/head :: css-js"></div>
+</head>
+<body>
+	<form id="login-form" class="text-center border rounded p-5"
+		th:action="@{/login}" method="post">
+		<img id="logo-login" src='../static/img/service-logo.png'
+			th:src='@{/img/service-logo.png}' /> <input type="text"
+			class="form-control mb-4" placeholder="Username" name="username">
+		<input type="password" class="form-control mb-4"
+			placeholder="Password" name="password"> <input type="hidden"
+			id="csrf_token" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<button class="btn btn-info btn-block" type="submit">Sign in</button>
+		<div th:if="${param.error}" id="login-error"
+			class="alert alert-danger">Invalid username or password.</div>
+		<div id="forgot-password">
+			<small><a href="#">Forgot password?</a></small>
+		</div>
+		<div class="col-md-12 ">
+			<div class="login-or">
+				<hr class="hr-or">
+				<span class="span-or">or</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<p class="text-center">
+				Don't have account? <a href="#" id="signup">Sign up here</a>
+			</p>
+		</div>
+	</form>
+</body>
+</html>

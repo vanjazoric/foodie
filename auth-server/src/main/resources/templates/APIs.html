@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="fragments/head.html :: css-js"></div>
+</head>
+<body>
+	<nav th:replace="fragments/head :: navbar"></nav>
+	<div th:replace="fragments/head :: sidebar(APIs)"></div>
+	<div class="container">
+		<p>API</p>
+	</div>
+
+	<script>
+		$(document).ready(function() {
+			$("form").submit(function(e) {
+				e.preventDefault();
+				$.ajax({
+					type : "POST",
+					data : $("form").serialize(),
+					url : "/uaa/create-client",
+					statusCode : {
+						201 : function(data) {
+							$('#client-regitration-modal').modal('show');
+							$('.modal-table').show();
+							$('#client-id').append(data.clientId);
+							$('#client-secret').append(data.clientSecret);
+						}
+					},
+					error : function(jqxhr, textStatus, errThrown) {
+						console.log(textStatus);
+						console.log(errThrown);
+					}
+				});
+			});
+		});
+	</script>
+
+</body>
+</html>

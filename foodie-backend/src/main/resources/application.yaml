@@ -1,0 +1,78 @@
+
+
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/foodie?createDatabaseIfNotExist=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 420497032799-q3ptdlgccihmgub1e67rlg8jk7qlq2g4.apps.googleusercontent.com
+            client-secret: rqcDyVCvqQ2fr0WSfl89Dpk1
+            redirectUriTemplate: '{baseUrl}/oauth2/callback/{registrationId}'
+            scope:
+            - email
+            - profile
+          facebook:
+            clientId: 510387133050029
+            clientSecret: 02b3347c9e83ef71a33ae2fabb5252b5
+            redirectUriTemplate: '{baseUrl}/oauth2/callback/{registrationId}'
+            scope:
+            - email
+            - public_profile
+          myService:
+            client-name: my-service
+            client-id: barClientIdPassword
+            client-secret: secret
+            redirect-uri-template: http://localhost:8080/oauth2/callback/myService
+            authorization-grant-type: authorization_code
+            scope: bar,read,write
+            
+        provider:
+          facebook:
+            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+          myService:
+            authorization-uri: http://localhost:9999/uaa/oauth/authorize
+            token-uri: http://localhost:9999/uaa/oauth/token
+            user-info-uri: http://localhost:9000/user
+            user-name-attribute: username
+        resource:
+          jwt:
+            keyValue: |
+              -----BEGIN PUBLIC KEY-----
+              MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnGp/Q5lh0P8nPL21oMMrt2RrkT9AW5jgYwLfSUnJVc9G6uR3cXRRDCjHqWU5WYwivcF180A6CWp/ireQFFBNowgc5XaA0kPpzEtgsA5YsNX7iSnUibB004iBTfU9hZ2Rbsc8cWqynT0RyN4TP1RYVSeVKvMQk4GT1r7JCEC+TNu1ELmbNwMQyzKjsfBXyIOCFU/E94ktvsTZUHF4Oq44DBylCDsS1k7/sfZC2G5EU7Oz0mhG8+Uz6MSEQHtoIi6mc8u64Rwi3Z3tscuWG2ShtsUFuNSAFNkY7LkLn+/hxLCu2bNISMaESa8dG22CIMuIeRLVcAmEWEWH5EEforTg+QIDAQAB
+              -----END PUBLIC KEY-----
+
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+    authorizedRedirectUris: http://localhost:4200/oauth2/redirect
+        # After successfully authenticating with the OAuth2 Provider,
+        # we'll be generating an auth token for the user and sending the token to the
+        # redirectUri mentioned by the frontend client in the /oauth2/authorize request.
+        # We're not using cookies because they won't work well in mobile clients.
+        
+zuul:
+  routes:
+    resource:
+      path: /resource/**
+      url: http://localhost:9000
+    user:
+      path: /user/**
+      url: http://localhost:9000/user
+    
+      

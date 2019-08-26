@@ -1,0 +1,1 @@
+INSERT INTO `my_service`.`user` (`id`, `email`, `first_name`, `last_name`, `phone`, `username`) VALUES ('1', 'vanja_zoric@hotmail.com', 'Vanja', 'Zoric', '0643891303', 'user2');

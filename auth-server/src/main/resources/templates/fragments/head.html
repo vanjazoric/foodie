@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+	<div th:fragment="css-js" th:remove="tag">
+		<link href="../static/css/bootstrap.css" rel="stylesheet"
+			th:href="@{/css/bootstrap.css}" />
+		<link href="../static/css/style.css" rel="stylesheet"
+			th:href="@{/css/style.css}" />
+		<link rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+			integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+			crossorigin="anonymous">
+		<script src="../static/js/jquery-3.4.1.min.js"
+			th:src="@{/js/jquery-3.4.1.min.js}"></script>
+		<script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+	</div>
+
+	<div th:fragment="navbar" th:remove="tag">
+		<nav class="navbar navbar-expand-sm bg-info navbar-dark sticky-top">
+			<img id="logo-img" src='../static/img/logo.png'
+				th:src='@{/img/logo.png}' /> <a class="navbar-brand" href="#">My
+				authorization server</a>
+			<div sec:authorize="isAuthenticated()">
+				<ul class="navbar-nav ml-auto nav-flex-icons">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbar-right"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-user"></i> <span sec:authentication="name"></span>
+					</a>
+						<div class="dropdown-menu dropdown-menu-right dropdown-default"
+							aria-labelledby="navbar-right">
+							<form class="dropdown-item" th:action="@{/logout}" method="post">
+								<input type="hidden" th:name="${_csrf.parameterName}"
+									th:value="${_csrf.token}" /><input
+									class="btn btn-info btn-block" type="submit" value="Sign out" />
+							</form>
+						</div></li>
+				</ul>
+			</div>
+		</nav>
+
+	</div>
+	<div th:fragment="sidebar(active)" class="profile-sidebar">
+		<div class="profile-usermenu">
+			<ul class="nav">
+				<li th:class="${active == 'credentials'}? 'active' : null"><a
+					href="credentials"> <i class="fas fa-key"></i> Credentials
+				</a></li>
+				<li th:class="${active == 'client-registration'}? 'active' : null"><a
+					href="client-registration"> <i class="fas fa-plus"></i> Client
+						registration
+				</a></li>
+				<li th:class="${active == 'APIs'}? 'active' : null"><a
+					href="user"><i class="fas fa-bars"></i> APIs </a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

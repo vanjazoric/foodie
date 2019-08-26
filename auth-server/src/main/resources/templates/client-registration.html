@@ -1,0 +1,146 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<div th:replace="fragments/head :: css-js"></div>
+<meta name="_csrf.name" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+</head>
+<body>
+	<nav th:replace="fragments/head :: navbar"></nav>
+	<div th:replace="fragments/head :: sidebar(client-registration)"></div>
+	<div class="container">
+		<p>Here you can register a new client application which will use
+			available APIs.</p>
+		<form id="client-registration-form">
+			<fieldset class="well the-fieldset">
+				<legend class="the-legend">Register a client</legend>
+			</fieldset>
+			<div class="form-group">
+				<label for="redirect-uri">Redirect URI</label> <input type="text"
+					class="form-control" name="redirect-uri" id="redirect-uri"
+					aria-describedby="redirect-uri-help"
+					placeholder="Enter redirect URI" /> <small id="redirect-uri-help"
+					class="form-text text-muted">We'll never share your email
+					with anyone else.</small>
+			</div>
+			<div class="form-group">
+				<label for="client-name">Client name</label> <input type="text"
+					class="form-control" name="client-name" id="client-name"
+					placeholder="Client name" />
+			</div>
+
+			<button type="submit" class="btn btn-info">Create</button>
+		</form>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="client-regitration-modal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalCenterTitle">Client
+						credentials</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="modal-table">
+						<tr class="empty-row">
+							<td></td>
+							<td class="text-success copied" id="copied-id-message">Copied to clipboard.</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><b>Client ID</b></td>
+							<td id='client-id'></td>
+							<td><img class="copy-icon" id="copy-client-id"
+								src='../static/img/copy-to-clipboard.png'
+								th:src='@{/img/copy-to-clipboard.png}' /></td>
+						</tr>
+						<tr>
+							<td><b>Client secret</b></td>
+							<td id='client-secret'></td>
+							<td><img class="copy-icon" id="copy-client-secret"
+								src='../static/img/copy-to-clipboard.png'
+								th:src='@{/img/copy-to-clipboard.png}' /></td>
+						</tr>
+						<tr class="empty-row">
+							<td></td>
+							<td class="text-success copied" id="copied-secret-message">Copied to clipboard.</td>
+								<td></td>
+						</tr>
+					</table>
+					<p>The client ID and client secret can always be accessed from
+						Credentials.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$(document).ready(function() {
+			var token = $("meta[name='_csrf.name']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			$(document).ajaxSend(function(e, xhr, options) {
+				xhr.setRequestHeader(header, token);
+			});
+			$("#client-registration-form").submit(function(e) {
+				e.preventDefault();
+				$.ajax({
+					type : "POST",
+					data : $("form").serialize(),
+					url : "/uaa/create-client",
+					statusCode : {
+						201 : function(data) {
+							$('#client-regitration-modal').modal('show');
+							$('.modal-table').show();
+							$('#client-id').append(data.clientId);
+							$('#client-secret').append(data.clientSecret);
+						}
+					},
+					error : function(jqxhr, textStatus, errThrown) {
+						console.log(textStatus);
+						console.log(errThrown);
+					}
+				});
+			});
+
+			$("#copy-client-id").click(function() {
+				var copyClientId = document.getElementById("client-id");
+				var selection = window.getSelection();
+				var range = document.createRange();
+				range.selectNodeContents(copyClientId);
+				selection.removeAllRanges();
+				selection.addRange(range);
+				var isCoppied = document.execCommand("copy");
+				if (isCoppied == true) {
+					$("#copied-id-message").show();
+					$('#copied-id-message').delay(3000).fadeOut('slow');
+				}
+			});
+
+			$("#copy-client-secret").click(function() {
+				var copyClientSecret = document.getElementById("client-secret");
+				var selection = window.getSelection();
+				var range = document.createRange();
+				range.selectNodeContents(copyClientSecret);
+				selection.removeAllRanges();
+				selection.addRange(range);
+				var isCoppied = document.execCommand("copy");
+				if (isCoppied == true) {
+					$("#copied-secret-message").show();
+					$('#copied-secret-message').delay(3000).fadeOut('slow');
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>
