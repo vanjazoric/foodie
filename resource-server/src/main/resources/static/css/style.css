@@ -1,0 +1,173 @@
+.modal-body input {
+	width: 100%;
+}
+
+.modal-body p {
+	margin-bottom: 0px;
+}
+
+#client-id, #client-secret {
+	margin-left: 30px;
+}
+
+.modal-body img {
+	height: 17px;
+	width: 17px;
+	margin-left: 10px;
+}
+
+.modal-table {
+	display: none;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.profile-usermenu {
+	margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f0f4f7;
+	width: 300px;
+}
+
+.profile-usermenu ul li:last-child {
+	border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+	color: #93a3b5;
+	font-size: 20px;
+	font-weight: 400;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-decoration: none;
+}
+
+.profile-usermenu ul li a i {
+	margin-right: 8px;
+	font-size: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.profile-usermenu ul li a:hover {
+	color: #17a2b8;
+}
+
+.profile-usermenu ul li.active {
+	background-color: #f6f9fb;
+}
+
+.profile-usermenu ul li.active a {
+	color: #17a2b8;
+	border-left: 2px solid #17a2b8;
+	margin-left: -2px;
+}
+
+.profile-sidebar {
+	float: left;
+	width: 20%;
+	overflow: hidden;
+	padding-left: 20px;
+	margin-right: 40px;
+}
+
+.container {
+	float: left;
+	width: 75%;
+	overflow: hidden;
+	margin-top: 30px;
+}
+
+#logo-img {
+	width: 50px;
+	height: 50px;
+	margin-right: 15px;
+}
+
+#navbar-right {
+	color: white;
+}
+
+a #navbar-right.nav-link.dropdown-toggle::after {
+	cursor: pointer;
+}
+
+#signup-form {
+	margin: 0 auto;
+	width: 500px;
+	margin-top: 80px;
+	padding-top: 10px !important;
+	border-color: #E5E5E5;
+}
+
+#logo-myservice {
+	width: 150px;
+	margin-bottom: 30px;
+}
+
+.login-or {
+	position: relative;
+	color: #aaa;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.span-or {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: -2px;
+	margin-left: -25px;
+	background-color: #fff;
+	width: 50px;
+	text-align: center;
+}
+
+.hr-or {
+	height: 1px;
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+
+#login-error {
+	margin-top: 3px;
+	padding: 2px;
+}
+
+#forgot-password {
+	color: #17a2b8;
+	padding-top: 5px;
+}
+
+#signup {
+	color: #17a2b8;
+}
+
+.copy-icon {
+	cursor: pointer;
+	text-align: center;
+}
+
+.empty-row {
+	height: 19px;
+}
+
+.copied {
+	font-size: 13px;
+	width: 150px;
+	display: none;
+}
+
+#client-registration-form {
+	width: 600px;
+}
+
+#login-error.alert {
+	margin-bottom: 0px;
+}

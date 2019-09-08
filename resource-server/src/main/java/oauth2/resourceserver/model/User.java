@@ -97,4 +97,9 @@ public class User {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public void setPassword(String encode) {
+		// TODO Auto-generated method stub
+		
+	}
 }

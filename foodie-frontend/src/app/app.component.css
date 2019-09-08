@@ -1,0 +1,21 @@
+nav {
+    background-color: #ECA106;
+    padding: 0px;
+}
+
+nav > a {
+padding: 0px;
+}
+
+#logo-img {
+    max-width: 65px;
+    margin-left: 20px;
+    margin-bottom: -8px;
+}
+
+.rounded-circle {
+    width: 50px;
+    margin-right: 10px;
+    cursor: pointer;
+    margin-bottom: -8px;
+}

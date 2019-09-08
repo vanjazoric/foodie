@@ -104,7 +104,7 @@ a #navbar-right.nav-link.dropdown-toggle::after {
 	border-color: #E5E5E5;
 }
 
-#logo-login {
+#logo-myservice {
 	width: 150px;
 	margin-bottom: 70px;
 }
@@ -141,8 +141,11 @@ a #navbar-right.nav-link.dropdown-toggle::after {
 }
 
 #forgot-password {
-	color: #17a2b8;
 	padding-top: 5px;
+}
+
+#forgot-password a {
+	color: #17a2b8 !important;
 }
 
 #signup {

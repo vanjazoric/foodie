@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import foodie.domain.User;
 import foodie.exception.ResourceNotFoundException;
+import foodie.model.User;
 import foodie.repository.UserRepository;
 
 @Service

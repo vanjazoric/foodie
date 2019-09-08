@@ -1,0 +1,44 @@
+#home-background {
+    background-size: cover;
+    width: 100%;
+}
+
+.container {
+    position: relative;
+    padding: 0px;
+    max-width: 100% !important;
+}
+
+#home-text {
+    position: absolute;
+    width: 700px;
+    text-align: left;
+    top: 20px;
+}
+
+.light-text {
+    margin-bottom: 0px;
+    font-weight: 100;
+    font-size: 18px;
+    margin-left: 20px;
+    font-family: Nunito;
+}
+
+.bold-text {
+    font-weight: 600;
+    font-size: 20px;
+    margin-left: 20px;
+    font-family: Nunito;
+}
+
+.row img {
+    max-width: 50px;
+}
+
+.row {
+    left: 20px;
+}
+
+.search-part {
+    width: 800px;
+}

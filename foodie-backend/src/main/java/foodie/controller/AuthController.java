@@ -19,12 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import foodie.domain.AuthProvider;
-import foodie.domain.User;
 import foodie.dto.ApiResponse;
 import foodie.dto.LoginRequest;
 import foodie.dto.SignUpRequest;
 import foodie.exception.BadRequestException;
+import foodie.model.AuthProvider;
+import foodie.model.Role;
+import foodie.model.User;
 import foodie.repository.UserRepository;
 import foodie.security.TokenProvider;
 
@@ -67,9 +68,10 @@ public class AuthController {
 		user.setFirstName(signUpRequest.getFirstName());
 		user.setLastName(signUpRequest.getLastName());
 		user.setEmail(signUpRequest.getEmail());
+		user.setPhoneNumber(signUpRequest.getPhoneNumber());
 		user.setPassword(signUpRequest.getPassword());
 		user.setProvider(AuthProvider.local);
-
+		user.setRole(new Role("ROLE_CUSTOMER"));
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 		User result = userRepository.save(user);

@@ -2,8 +2,8 @@ package foodie.security.oauth2.user;
 
 import java.util.Map;
 
-import foodie.domain.AuthProvider;
 import foodie.exception.OAuth2AuthenticationProcessingException;
+import foodie.model.AuthProvider;
 
 public class OAuth2UserInfoFactory {
 

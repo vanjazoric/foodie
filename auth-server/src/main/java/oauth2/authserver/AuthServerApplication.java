@@ -38,8 +38,8 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
-import oauth2.authserver.service.CustomClientDetailsServiceImpl;
-import oauth2.authserver.service.CustomUserDetailsService;
+import oauth2.authserver.service.impl.CustomClientDetailsServiceImpl;
+import oauth2.authserver.service.impl.CustomUserDetailsService;
 
 @SpringBootApplication
 @Controller

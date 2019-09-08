@@ -1,14 +1,13 @@
-
-
 spring:
   datasource:
     username: root
     password: root
     url: jdbc:mysql://localhost:3306/foodie?createDatabaseIfNotExist=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
+    initialization-mode: always
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -75,4 +74,3 @@ zuul:
       path: /user/**
       url: http://localhost:9000/user
     
-      

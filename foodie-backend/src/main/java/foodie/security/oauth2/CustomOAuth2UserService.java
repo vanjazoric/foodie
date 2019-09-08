@@ -12,9 +12,11 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import foodie.domain.AuthProvider;
-import foodie.domain.User;
 import foodie.exception.OAuth2AuthenticationProcessingException;
+import foodie.model.AuthProvider;
+import foodie.model.Role;
+import foodie.model.User;
+import foodie.repository.RoleRepository;
 import foodie.repository.UserRepository;
 import foodie.security.UserPrincipal;
 import foodie.security.oauth2.user.OAuth2UserInfo;
@@ -25,6 +27,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private RoleRepository roleRepository;
 
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException {
@@ -68,13 +73,14 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 	private User registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
 		User user = new User();
-
 		user.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
 		user.setProviderId(oAuth2UserInfo.getId());
 		user.setFirstName(oAuth2UserInfo.getFirstName());
 		user.setLastName(oAuth2UserInfo.getLastName());
 		user.setEmail(oAuth2UserInfo.getEmail());
 		user.setImageUrl(oAuth2UserInfo.getImageUrl());
+		Role role = roleRepository.findByName("ROLE_CUSTOMER");
+		user.setRole(role);
 		return userRepository.save(user);
 	}
 

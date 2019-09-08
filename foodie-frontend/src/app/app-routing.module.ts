@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { OAuth2Component } from './modules/auth/oauth2/oauth2.component';
+import { HomeComponent } from './modules/home/home/home.component';
 
 const routes: Routes = [
   { path: 'login', 
@@ -10,10 +11,10 @@ const routes: Routes = [
   {
     path: 'oauth2/redirect',
     component: OAuth2Component
-  }/*,
-  { path: 'dashboard',
-    component: DashboardComponent
-  }*/
+  },
+  { path: 'home',
+    component: HomeComponent
+  }
 ];
 
 @NgModule({

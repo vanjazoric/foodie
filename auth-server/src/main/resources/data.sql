@@ -22,8 +22,7 @@ VALUES
 	
 	
 INSERT INTO role (`name`) VALUES('ROLE_USER');
-INSERT INTO user (`activated`, `activation_key`, `password`, `reset_password_key`, `username`) VALUES ('1', 'key', '$2a$08$ykRg8pnUT//37v8YPR5tk.YsUWxWi800ObT8TGuZlvI9SgPHiS6HK', 'hyh', 'user1');
-INSERT INTO user (`activated`, `activation_key`, `password`, `reset_password_key`, `username`) VALUES ('1', 'key', '$2a$08$ykRg8pnUT//37v8YPR5tk.YsUWxWi800ObT8TGuZlvI9SgPHiS6HK', 'hyh', 'user2');
-INSERT INTO user (`activated`, `activation_key`, `password`, `reset_password_key`, `username`) VALUES ('1', 'key', '$2a$08$ykRg8pnUT//37v8YPR5tk.YsUWxWi800ObT8TGuZlvI9SgPHiS6HK', 'hyh', 'user3');
-INSERT INTO user_roles VALUES (2, 1);
-INSERT INTO user_roles VALUES (3, 1);
+INSERT INTO role (`name`) VALUES('ROLE_ADMIN');
+INSERT INTO user (password, username, role_id) VALUES ('$2a$08$ykRg8pnUT//37v8YPR5tk.YsUWxWi800ObT8TGuZlvI9SgPHiS6HK', 'user1', 1);
+INSERT INTO user (password, username, role_id) VALUES ('$2a$08$ykRg8pnUT//37v8YPR5tk.YsUWxWi800ObT8TGuZlvI9SgPHiS6HK', 'user2', 2);
+INSERT INTO user (password, username, role_id) VALUES ('$2a$08$ykRg8pnUT//37v8YPR5tk.YsUWxWi800ObT8TGuZlvI9SgPHiS6HK', 'user3', 1);

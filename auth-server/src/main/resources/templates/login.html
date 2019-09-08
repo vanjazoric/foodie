@@ -3,9 +3,10 @@
 <div th:replace="fragments/head :: css-js"></div>
 </head>
 <body>
+	<p th:text="${param.registered}">Test</p>
 	<form id="login-form" class="text-center border rounded p-5"
 		th:action="@{/login}" method="post">
-		<img id="logo-login" src='../static/img/service-logo.png'
+		<img id="logo-myservice" src='../static/img/service-logo.png'
 			th:src='@{/img/service-logo.png}' /> <input type="text"
 			class="form-control mb-4" placeholder="Username" name="username">
 		<input type="password" class="form-control mb-4"
@@ -25,7 +26,8 @@
 		</div>
 		<div class="form-group">
 			<p class="text-center">
-				Don't have account? <a href="#" id="signup">Sign up here</a>
+				Don't have account? <a href="http://localhost:9000/signup"
+					id="signup">Sign up here</a>
 			</p>
 		</div>
 	</form>

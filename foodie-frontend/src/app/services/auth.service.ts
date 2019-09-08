@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { User } from '../model/user';
-import { API_BASE_URL, ACCESS_TOKEN } from '../constants/constants';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ACCESS_TOKEN, API_BASE_URL, CURRENT_USER } from '../constants/constants';
 import { LoginRequest } from '../model/loginRequest';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AuthService {
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem(CURRENT_USER)));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -34,7 +34,7 @@ export class AuthService {
         // login successful if there's a jwt token in the response
         console.log(token);
         if (token.accessToken) {
-          console.log("AAAAAA"+ token.accessToken);
+          console.log("AAAAAA" + token.accessToken);
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem(ACCESS_TOKEN, token.accessToken);
         }
@@ -42,12 +42,10 @@ export class AuthService {
   }
 
   getCurrentUser() {
-    if (!localStorage.getItem(ACCESS_TOKEN)) {
-      return Promise.reject("No access token set.");
-    }
-    return this.http.get<any>(API_BASE_URL + "/user/me").pipe(map(user => {
-      this.currentUserSubject.next(user)
-    }));
+      return this.http.get<any>(API_BASE_URL + "/users/me").pipe(map(user => {
+        localStorage.setItem(CURRENT_USER, JSON.stringify(user));
+        this.currentUserSubject.next(user);
+      }));
   }
 
   logout() {

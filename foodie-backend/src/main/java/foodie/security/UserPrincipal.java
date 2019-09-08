@@ -10,12 +10,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import foodie.domain.User;
+import foodie.model.User;
 
 public class UserPrincipal implements OAuth2User, UserDetails {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String email;
 	private String password;
@@ -30,8 +30,8 @@ public class UserPrincipal implements OAuth2User, UserDetails {
 	}
 
 	public static UserPrincipal create(User user) {
-		List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-
+		List<GrantedAuthority> authorities = Collections
+				.singletonList(new SimpleGrantedAuthority(user.getRole().getName()));
 		return new UserPrincipal(user.getId(), user.getEmail(), user.getPassword(), authorities);
 	}
 

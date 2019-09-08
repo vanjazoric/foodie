@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { User } from './model/user';
+import { ACCESS_TOKEN } from './constants/constants';
 import { Router } from '@angular/router';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'frontend-app';
+  faSignOut = faSignOutAlt;
 
   currentUser: User = null;;
 
@@ -17,7 +20,11 @@ export class AppComponent {
     private router: Router,
     private authService: AuthService
   ) {
+    if (localStorage.getItem(ACCESS_TOKEN)) {
+      this.authService.getCurrentUser().subscribe();
+    }
     this.authService.currentUser.subscribe(x => this.currentUser = x);
+    console.log(this.currentUser);
   }
 
   logout() {
