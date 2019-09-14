@@ -171,3 +171,17 @@ a #navbar-right.nav-link.dropdown-toggle::after {
 #login-error.alert {
 	margin-bottom: 0px;
 }
+
+.validation-error {
+	font-size: 14px;
+	color: red;
+}
+
+label {
+	float: left;
+}
+
+#choose-photo {
+	float: left;
+	margin-bottom: 30px;
+}

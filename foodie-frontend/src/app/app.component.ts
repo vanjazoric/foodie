@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { User } from './model/user';
-import { ACCESS_TOKEN } from './constants/constants';
+import { ACCESS_TOKEN, CURRENT_USER } from './constants/constants';
 import { Router } from '@angular/router';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,9 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 export class AppComponent {
   title = 'frontend-app';
   faSignOut = faSignOutAlt;
-
+  faProfile = faUser;
   currentUser: User = null;;
+  defaultImage:string='/assets/img/avatar.png';
 
   constructor(
     private router: Router,
@@ -28,8 +29,9 @@ export class AppComponent {
   }
 
   logout() {
-    //?
     this.currentUser = null;
+    localStorage.removeItem(ACCESS_TOKEN)
+    localStorage.removeItem(CURRENT_USER)
     this.authService.logout();
     this.router.navigate(['/login']);
   }

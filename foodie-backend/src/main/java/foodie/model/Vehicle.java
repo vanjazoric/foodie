@@ -1,5 +1,6 @@
 package foodie.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,7 @@ public class Vehicle {
 	
 	private int manufactureYear;
 		
+	@Column(columnDefinition = "BOOLEAN")
 	private boolean inUse;
 	
 	private String note;

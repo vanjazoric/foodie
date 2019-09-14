@@ -15,33 +15,43 @@
 <body>
 
 	<form id="signup-form" class="text-center border rounded p-5"
-		th:action="@{/sign-up}" method="post" th:object="${user}">
+		th:action="@{/sign-up}" method="post" th:object="${user}"
+		enctype="multipart/form-data">
 		<img id="logo-myservice" src='../static/img/service-logo.png'
 			th:src='@{/img/service-logo.png}' />
 		<p class="h4 mb-4">Create new account</p>
 		<div class="form-row">
 			<div class="col">
-				<input type="text" class="form-control mb-4"
-					placeholder="First name" name="firstName" />
-				<p th:if="${#fields.hasErrors('firstName')}"
-					class="label label-danger" th:errors="*{firstName}">Incorrect
-					LP</p>
+				<span th:if="${#fields.hasErrors('firstName')}"
+					class="validation-error" th:errors="*{firstName}"></span> <input
+					type="text" class="form-control mb-4" placeholder="First name"
+					name="firstName" />
 			</div>
 			<div class="col">
-				<input type="text" class="form-control mb-4" placeholder="Last Name"
+				<span th:if="${#fields.hasErrors('lastName')}"
+					class="validation-error" th:errors="*{lastName}"></span> <input
+					type="text" class="form-control mb-4" placeholder="Last Name"
 					name="lastName" />
 			</div>
 		</div>
-		<input type="text" class="form-control mb-4" placeholder="Username"
-			name="username" /> <input type="password" class="form-control mb-4"
-			placeholder="Password" name="password" /> <input type="password"
-			class="form-control mb-4" placeholder="Confirm password"
-			name="matchingPassword" /> <input type="email"
-			class="form-control mb-4" placeholder="Email" name="email" /> <input
+		<span th:if="${#fields.hasErrors('username')}"
+			class="validation-error" th:errors="*{username}"></span> <input
+			type="text" class="form-control mb-4" placeholder="Username"
+			name="username" /> <span th:if="${#fields.hasErrors('password')}"
+			class="validation-error" th:errors="*{password}"></span><input
+			type="password" class="form-control mb-4" placeholder="Password"
+			name="password" /> <input type="password" class="form-control mb-4"
+			placeholder="Confirm password" name="matchingPassword" /> <input
+			type="email" class="form-control mb-4" placeholder="Email"
+			name="email" /><span th:if="${#fields.hasErrors('phoneNumber')}"
+			class="validation-error" th:errors="*{phoneNumber}"></span> <input
 			type="text" class="form-control mb-4" placeholder="Phone number"
-			name="phone-number" /> <input type="hidden" id="csrf_token"
-			name="${_csrf.parameterName}" value="${_csrf.token}" />
-		<button class="btn btn-info btn-block" type="submit">Sign up</button>
+			name="phoneNumber" /> <label>Izaberi profilnu sliku: </label><input
+			type="file" id="choose-photo" name="image" multiple="multiple" /> <br />
+		<input type="hidden" id="csrf_token" name="${_csrf.parameterName}"
+			value="${_csrf.token}" /> <br /> <input
+			class="btn btn-info btn-block" type="submit" value="Sign up" />
+
 		<div th:if="${param.error}" id="login-error"
 			class="alert alert-danger">Invalid username or password.</div>
 		<div class="col-md-12 ">

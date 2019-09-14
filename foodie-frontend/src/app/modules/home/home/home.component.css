@@ -29,6 +29,7 @@
     font-size: 20px;
     margin-left: 20px;
     font-family: Nunito;
+    margin-right: 20px;
 }
 
 .row img {
@@ -39,6 +40,63 @@
     left: 20px;
 }
 
-.search-part {
+.choose-category {
     width: 800px;
+    margin-left: 20px;
+}
+
+#search {
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 800px;
+}
+
+.col-sm-6 .first {
+    padding-left: 0px;
+}
+
+.col-sm-6 .second {
+    padding-left: 20px;
+}
+
+#search-restaurants-button,
+#search-items-button {
+    background-color: #ECA106;
+}
+
+.vl {
+    margin-right: 70px;
+    border-left: 3px solid #ECA106;
+    height: 420px;
+    margin-left: 70px;
+}
+
+fa-icon {
+    color: #ECA106;
+}
+
+.main {
+    margin-right: 0px;
+}
+
+.recommending {
+    border-left: 3px solid #ECA106;
+}
+
+.recommending-title {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.col-md-7 {
+    padding-left: 0px;
+}
+
+.popular {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.listing {
+    padding: 20px;
 }

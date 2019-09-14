@@ -18,6 +18,8 @@ import oauth2.resourceserver.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService {
 
+	static final String BASE_URL = "http://localhost:9000/images/";
+
 	@Autowired
 	ModelMapper modelMapper;
 
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	ImageService imageService;
 
 	@Override
 	public UserResponse findByUsername(String username) {
@@ -54,29 +59,43 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public UserResponse create(SignUpRequest request) throws UserAlreadyExistsException {
-		UserCredentialsRequest credentials = new UserCredentialsRequest(request.getUsername(), request.getPassword(),
-				request.getEmail());
-		if (emailExists(credentials)) {
+		UserCredentialsRequest credentials = new UserCredentialsRequest(request.getUsername(),
+				passwordEncoder.encode(request.getPassword()), request.getEmail());
+		if (userExists(credentials.getUsername(), credentials.getEmail())) {
 			throw new UserAlreadyExistsException("There is an account with that email address:" + request.getEmail());
 		}
 		User user = new User();
 		user.setFirstName(request.getFirstName());
 		user.setLastName(request.getLastName());
+		user.setUsername(request.getUsername());
 		user.setEmail(request.getEmail());
 		user.setPhone(request.getPhoneNumber());
 		user.setEmail(request.getEmail());
-		user.setPassword(passwordEncoder.encode(request.getPassword()));
+		user.setPassword(credentials.getPassword());
+		if (imageService.uploadImage(request.getImage(), request.getUsername())) {
+			user.setImage(BASE_URL + "username");
+		}
+		// Save user on the Authorization server
+		saveUserOnAuth(credentials);
 		return convertToUserResponse(userRepository.save(user));
 	}
 
-	private boolean emailExists(UserCredentialsRequest credentials) {
-		Boolean existsOnAuth = restTemplate.postForObject("http://localhost:9999/users/check-credentials", credentials,
-				Boolean.class);
-		User user = userRepository.findByEmail(credentials.getEmail());
+	private boolean userExists(String username, String email) {
+		Boolean existsOnAuth = restTemplate.getForObject(
+				"http://localhost:9999/uaa/users/check-user?username=" + username + "&email=" + email, Boolean.class);
+		User user = userRepository.findByEmail(email);
 		if (user != null || existsOnAuth) {
 			return true;
 		}
 		return false;
 	}
 
+	private boolean saveUserOnAuth(UserCredentialsRequest credentials) {
+		Boolean saveOnAuth = restTemplate.postForObject("http://localhost:9999/uaa/users/save-user", credentials,
+				Boolean.class);
+		if (saveOnAuth) {
+			return true;
+		}
+		return false;
+	}
 }

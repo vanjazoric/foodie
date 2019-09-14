@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,13 +16,13 @@ import oauth2.resourceserver.validation.ValidEmail;
 @PasswordMatches
 public class SignUpRequest {
 
-	@NotBlank
+	@NotBlank(message = "{validation.firstName.notEmpty}")
 	private String firstName;
 
-	@NotBlank
+	@NotBlank(message = "{validation.username.notEmpty}")
 	private String username;
 
-	@NotBlank
+	@NotBlank(message = "{validation.lastName.notEmpty}")
 	private String lastName;
 
 	@ValidEmail
@@ -29,12 +30,14 @@ public class SignUpRequest {
 	@NotEmpty
 	private String email;
 
-	@NotBlank
+	@NotBlank(message = "{validation.password.notEmpty}")
 	private String password;
 
 	private String matchingPassword;
 
-	@NotBlank
+	@NotBlank(message = "{validation.phoneNumber.notEmpty}")
 	private String phoneNumber;
+
+	private MultipartFile image;
 
 }

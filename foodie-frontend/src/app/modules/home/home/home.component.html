@@ -7,27 +7,116 @@
         <p class="light-text">Izaberite kategoriju restorana:</p>
     </div>
 </div>
-<div class="search-part">
-    <div class="row" id="categories">
-        <div class="col-md-2 text-center"><img src="/assets/img/cook.png">
-            <p>domaća kuhinja</p>
+<div class="row main">
+    <div class="col-md-7">
+        <div class="choose-category">
+            <div class="row" id="categories">
+                <div class="col-md-2 text-center"><img src="/assets/img/cook.png">
+                    <p>domaća kuhinja</p>
+                </div>
+                <div class="col-md-2 text-center"><img src="/assets/img/fast-food.png">
+                    <p>brza hrana</p>
+                </div>
+                <div class="col-md-2 text-center"><img src="/assets/img/chinese.png">
+                    <p>kineski restoran</p>
+                </div>
+                <div class="col-md-2 text-center"><img src="/assets/img/pizza.png">
+                    <p>italijanski restoran</p>
+                </div>
+                <div class="col-md-2 text-center"><img src="/assets/img/vegetarian.png">
+                    <p>vegetarijanski restoran</p>
+                </div>
+                <div class="col-md-2 text-center"><img src="/assets/img/cupcake.png">
+                    <p>poslastičarnica</p>
+                </div>
+            </div>
+            <br />
+            <p class="light-text">... ili izvršite detaljniju pretragu restorana i artikala: </p>
         </div>
-        <div class="col-md-2 text-center"><img src="/assets/img/fast-food.png">
-            <p>brza hrana</p>
-        </div>
-        <div class="col-md-2 text-center"><img src="/assets/img/chinese.png">
-            <p>kineski restoran</p>
-        </div>
-        <div class="col-md-2 text-center"><img src="/assets/img/pizza.png">
-            <p>italijanski restoran</p>
-        </div>
-        <div class="col-md-2 text-center"><img src="/assets/img/vegetarian.png">
-            <p>vegetarijanski restoran</p>
-        </div>
-        <div class="col-md-2 text-center"><img src="/assets/img/cupcake.png">
-            <p>poslastičarnica</p>
+        <div class="row" id="search">
+            <div class="col-sm-6 first">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="restaurant-name" placeholder="Naziv restorana">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="restaurant-address" placeholder="Adresa restorana">
+                    </div>
+                    <div class="form-group">
+                        <label>Kategorija:&nbsp;</label>
+                        <select class="select-category" name="selectedCategory" [(ngModel)]="selectedCategory">
+                            <option *ngFor="let c of categories" [ngValue]="c">{{c}}</option>
+                        </select>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="col text-center">
+                        <button type="submit" id="search-restaurants-button" class="btn btn-primary btn-sm">Pretraži
+                            restorane</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6 second">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="item-name" placeholder="Naziv artikla">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="item-restaurant" placeholder="Naziv restorana">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <input type="number" class="form-control" placeholder="Cena od">
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" placeholder="Cena do">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" value="male" name="gender" ngModel> Piće
+                        <input type="radio" value="female" name="gender" ngModel> Hrana
+                    </div>
+                    <div class="col text-center">
+                        <button type="submit" id="search-items-button" class="btn btn-primary btn-sm">Pretraži
+                            artikle</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <br/>
-    <p class="light-text">... ili izvršite detaljniju pretragu restorana i artikala: </p>
+    <div class="col-md-5 recommending">
+        <div class="row bold-text recommending-title">
+            <div class="col-xs-4">
+                <fa-icon [icon]="faStar"></fa-icon>
+            </div>
+            <div class="col-xs-4">
+                <p>Popularni artikli</p>
+            </div>
+            <div class="col-xs-4">
+                <fa-icon [icon]="faStar"></fa-icon>
+            </div>
+        </div>
+        <div class="listing">
+            <div class="row">
+                <div class="col-md-4 text-center popular" *ngFor="let item of firstRow">
+                    <h6>{{item.name}}</h6>
+                    <p>{{item.price}} RSD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-center popular" *ngFor="let item of secondRow">
+                    <h6>{{item.name}}</h6>
+                    <p>{{item.price}} RSD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-center popular" *ngFor="let item of thirdRow">
+                    <h6>{{item.name}}</h6>
+                    <p>{{item.price}} RSD</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

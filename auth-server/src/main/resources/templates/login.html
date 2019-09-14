@@ -3,7 +3,6 @@
 <div th:replace="fragments/head :: css-js"></div>
 </head>
 <body>
-	<p th:text="${param.registered}">Test</p>
 	<form id="login-form" class="text-center border rounded p-5"
 		th:action="@{/login}" method="post">
 		<img id="logo-myservice" src='../static/img/service-logo.png'

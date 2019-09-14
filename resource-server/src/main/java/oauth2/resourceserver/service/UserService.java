@@ -1,5 +1,7 @@
 package oauth2.resourceserver.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import oauth2.resourceserver.dto.SignUpRequest;
 import oauth2.resourceserver.dto.UserResponse;
 import oauth2.resourceserver.model.User;

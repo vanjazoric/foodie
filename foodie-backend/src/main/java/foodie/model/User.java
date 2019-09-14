@@ -2,12 +2,12 @@ package foodie.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -34,7 +34,7 @@ import lombok.Setter;
 public class User {
 
 	@Id
-	@GeneratedValue // (strategy = GenerationType.IDENTITY)
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	// @Column(nullable = false)
@@ -57,14 +57,14 @@ public class User {
 
 	private String phoneNumber;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition = "BOOLEAN")
 	private Boolean emailVerified = false;
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private foodie.model.AuthProvider provider;
 
-	@ManyToOne//(cascade = CascadeType.MERGE)
+	@ManyToOne // (cascade = CascadeType.MERGE)
 	private Role role;
 
 	private String providerId;

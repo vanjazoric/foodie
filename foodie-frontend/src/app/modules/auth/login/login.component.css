@@ -1,0 +1,38 @@
+p {
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+a {
+    cursor: pointer;
+    color: #ECA106 !important;
+}
+
+.spacing {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.middlePage {
+    width: 800px;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+small {
+    margin-left: 4px;
+}
+
+.logo {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+button {
+    background: #ECA106;
+}
+
+h2 {
+    color: #ECA106;
+}

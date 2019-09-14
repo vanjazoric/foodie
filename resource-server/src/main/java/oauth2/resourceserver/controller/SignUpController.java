@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import exception.UserAlreadyExistsException;
 import oauth2.resourceserver.dto.SignUpRequest;
@@ -19,6 +20,8 @@ import oauth2.resourceserver.service.UserService;
 
 @Controller
 public class SignUpController {
+
+	static final String AUTH_LOGIN_URL = "http://localhost:9999/uaa/login";
 
 	@Autowired
 	UserService userService;
@@ -35,7 +38,7 @@ public class SignUpController {
 
 	@PostMapping("/sign-up")
 	public ModelAndView registerUser(@ModelAttribute("user") @Valid SignUpRequest request, BindingResult result,
-			Errors errors) {
+			Errors errors, RedirectAttributes redirAttrs) {
 		if (!result.hasErrors()) {
 			try {
 				userService.create(request);
@@ -46,15 +49,8 @@ public class SignUpController {
 		if (result.hasErrors()) {
 			return new ModelAndView("signup", "user", request);
 		} else {
-			return new ModelAndView("login", "user", request);
+			redirAttrs.addFlashAttribute("success", "You have successfully signed up.");
+			return new ModelAndView("redirect:" + AUTH_LOGIN_URL);
 		}
-
-		/*
-		 * if (userService.create(signUpRequest)) {
-		 * restTemplate.getForObject("http://localhost:9999/login?registered=true",
-		 * String.class); } else { redirectAttributes.addFlashAttribute("message",
-		 * "Failed"); redirectAttributes.addFlashAttribute("alertClass",
-		 * "alert-danger"); } return "redirect:/signup";
-		 */
 	}
 }

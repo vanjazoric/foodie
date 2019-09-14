@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/image")
+@RequestMapping("/images")
 public class ImageController {
 
-	@GetMapping(value = "{userId}")
-	public ResponseEntity<InputStreamResource> getImage(@PathVariable Long userId) throws IOException {
-		ClassPathResource imgFile = new ClassPathResource("image/" + userId + ".png");
+	@GetMapping(value = "{username}")
+	public ResponseEntity<InputStreamResource> getImage(@PathVariable String username) throws IOException {
+		ClassPathResource imgFile = new ClassPathResource("img/" + username + ".png");
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
 				.body(new InputStreamResource(imgFile.getInputStream()));
 	}

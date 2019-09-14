@@ -1,5 +1,6 @@
 package foodie.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,11 +25,12 @@ public class Item {
 	private double price;
 
 	private String description;
-	
+
 	private ItemType type;
 
 	// grams for food, mililiters for drinks
 	private String weight;
-	
+
+	@Column(columnDefinition = "BOOLEAN")
 	private boolean deleted;
 }
