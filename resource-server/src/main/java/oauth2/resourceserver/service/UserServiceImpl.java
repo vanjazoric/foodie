@@ -69,11 +69,10 @@ public class UserServiceImpl implements UserService {
 		user.setLastName(request.getLastName());
 		user.setUsername(request.getUsername());
 		user.setEmail(request.getEmail());
-		user.setPhone(request.getPhoneNumber());
+		user.setPhoneNumber(request.getPhoneNumber());
 		user.setEmail(request.getEmail());
-		user.setPassword(credentials.getPassword());
 		if (imageService.uploadImage(request.getImage(), request.getUsername())) {
-			user.setImage(BASE_URL + "username");
+			user.setImageUrl(BASE_URL + "username");
 		}
 		// Save user on the Authorization server
 		saveUserOnAuth(credentials);

@@ -5,14 +5,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@NoArgsConstructor
+@Getter
 @Entity
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
 	private Long id;
 
 	private String username;
@@ -23,83 +27,19 @@ public class User {
 
 	private String lastName;
 
-	private String phone;
+	private String phoneNumber;
 
-	private String image;
+	private String imageUrl;
 
-	public User() {
-		super();
-	}
-
-	public User(Long id, String username, String email, String firstName, String lastName, String phone, String image) {
+	public User(Long id, String username, String email, String firstName, String lastName, String phoneNumber,
+			String imageUrl) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.phone = phone;
-		this.image = image;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public void setPassword(String encode) {
-		// TODO Auto-generated method stub
-		
+		this.phoneNumber = phoneNumber;
+		this.imageUrl = imageUrl;
 	}
 }

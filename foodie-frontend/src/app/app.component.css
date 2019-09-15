@@ -13,7 +13,7 @@ nav>a {
 }
 
 .rounded-circle {
-    height: 50px;
+    max-height: 50px;
     margin-right: 10px;
     cursor: pointer;
 }
@@ -26,4 +26,10 @@ nav>a {
     margin-top: 14px;
     margin-bottom: 0px;
     color: white !important;
+}
+
+.shopping-cart {
+    max-height: 50px;
+    margin-left: 20px;
+    margin-top: -14px;
 }

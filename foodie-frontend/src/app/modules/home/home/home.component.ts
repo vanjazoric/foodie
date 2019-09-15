@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { ItemService } from '../../../services/item.service';
 import { Item } from '../../../model/item';
+import { ModalService } from '../../../services/modal.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { OrderItem } from 'src/app/model/orderItem';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +17,14 @@ export class HomeComponent implements OnInit {
   categories: string[];
   selectedCategory: number;
   faStar = faStar;
+  faUtensils = faUtensils;
   popularItems: Item[] = [];
-  firstRow: Item[] = [];
-  secondRow: Item[] = [];
-  thirdRow: Item[] = [];
+  bodyText: string;
+  item: Item;
+  form: FormGroup;
+  orderItems: OrderItem[] = [];
 
-  constructor(private itemService: ItemService) {
+  constructor(private itemService: ItemService, private modalService: ModalService, private fb: FormBuilder) {
     this.getMostPopularItems();
     this.categories = new Array("Domaća kuhinja", "Brza hrana",
       "Kineski restoran", "Italijanski restoran", "Vegetarijanski restoran", "Poslastičarnica");
@@ -29,36 +35,51 @@ export class HomeComponent implements OnInit {
       .subscribe(
         data => {
           this.popularItems = data;
-          this.getFirstRow();
-          this.getSecondRow();
-          this.getThirdRow();
+          console.log(data);
         },
         error => {
           console.log('Oops! Something went wrong. Please try again!');
         });
   }
 
-  getFirstRow() {
-    for (let index = 0; index < 3; index++) {
-
-      this.firstRow.push(this.popularItems[index]);
-      console.log(this.popularItems[2]);
-    }
+  openModal(id: number) {
+    this.item = this.popularItems.find(x => x.id === id)
+    console.log(this.item);
+    this.modalService.open("home-item-modal");
   }
 
-  getSecondRow() {
-    for (let index = 3; index < 6; index++) {
-      this.secondRow.push(this.popularItems[index]);
-    }
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 
-  getThirdRow() {
-    for (let index = 6; index < 9; index++) {
-      this.thirdRow.push(this.popularItems[index]);
+  addToCart(id: string) {
+    var orderItem = new OrderItem();
+    orderItem.itemId = this.item.id;
+    orderItem.itemName = this.item.name;
+    orderItem.itemPrice = this.item.price;
+    orderItem.restaurantId = this.item.restaurantId;
+    orderItem.restaurantName = this.item.restaurantName;
+    orderItem.quantity = this.form.get('quantity').value;
+
+    var storage = JSON.parse(localStorage.getItem('orderItems'));
+    if (storage == null) {
+      this.orderItems.push(orderItem);
+      localStorage.setItem('orderItems', JSON.stringify(this.orderItems));
     }
+    else {
+      storage.push(orderItem);
+      localStorage.setItem('orderItems', JSON.stringify(storage));
+    }
+
+    this.closeModal('home-item-modal');
+    console.log(id);
+    console.log(this.item);
   }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      quantity: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
+    });
   }
 
 }

@@ -6,6 +6,11 @@
     <ul *ngIf="currentUser" class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item">
             <a class="nav-link user">
+                <img src="/assets/img/shopping-cart.png" class="shopping-cart" alt="shopping cart">
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link user">
                 {{currentUser.firstName}} {{currentUser.lastName}}
             </a>
         </li>

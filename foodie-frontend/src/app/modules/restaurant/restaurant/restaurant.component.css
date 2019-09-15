@@ -1,0 +1,72 @@
+h3 {
+    margin-top: 30px;
+}
+
+hr {
+    border-bottom: 2px solid #ECA106;
+}
+
+.container {
+    max-width: 700px;
+    font-family: 'Nunito';
+}
+
+.restaurant-logo {
+    max-width: 180px;
+}
+
+.restaurant-data {
+    text-align: left;
+    font-size: 21px;
+    padding-top: 5px;
+}
+
+.items-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.food-items {
+    margin-top: 20px;
+}
+
+.item-type {
+    text-align: center;
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.item-image {
+    max-height: 100px;
+    margin-bottom: 5px;
+}
+
+p {
+    margin-bottom: 0px;
+}
+
+.item {
+    margin-bottom: 30px;
+}
+
+.btn-sm {
+    background-color: #ECA106;
+}
+
+.description {
+    min-height: 48px;
+}
+
+b {
+    margin: 0 auto;
+}
+
+h6 {
+    min-height: 38px;
+}
+
+#input-quantity {
+    width: 50px;
+}

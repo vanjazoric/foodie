@@ -51,7 +51,7 @@
                     <br />
                     <br />
                     <div class="col text-center">
-                        <button type="submit" id="search-restaurants-button" class="btn btn-primary btn-sm">Pretraži
+                        <button type="submit" class="btn btn-light btn-sm">Pretraži
                             restorane</button>
                     </div>
                 </form>
@@ -79,7 +79,7 @@
                         <input type="radio" value="female" name="gender" ngModel> Hrana
                     </div>
                     <div class="col text-center">
-                        <button type="submit" id="search-items-button" class="btn btn-primary btn-sm">Pretraži
+                        <button type="submit" class="btn btn-light btn-sm">Pretraži
                             artikle</button>
                     </div>
                 </form>
@@ -100,23 +100,47 @@
         </div>
         <div class="listing">
             <div class="row">
-                <div class="col-md-4 text-center popular" *ngFor="let item of firstRow">
-                    <h6>{{item.name}}</h6>
-                    <p>{{item.price}} RSD</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 text-center popular" *ngFor="let item of secondRow">
-                    <h6>{{item.name}}</h6>
-                    <p>{{item.price}} RSD</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 text-center popular" *ngFor="let item of thirdRow">
-                    <h6>{{item.name}}</h6>
-                    <p>{{item.price}} RSD</p>
+                <div *ngFor="let item of popularItems" class="col-4 text-center popular">
+                    <a class="item-link" (click)="openModal(item.id)">
+                        <h6>{{item.name}}</h6>
+                    </a>
+                    <p class="price">{{item.price}} RSD</p>
+                    <fa-icon [icon]="faUtensils">
+                    </fa-icon><a class="restaurant-link" [routerLink]="['/restaurant', item.restaurantId]">{{item.restaurantName}}</a>
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<f-modal id="home-item-modal" #homeItemModal class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{item?.name}}</h5>
+                <button type="button" (click)="closeModal('home-item-modal');" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Opis: {{item?.description}}</p>
+                <p>Težina: {{item?.weight}}</p>
+                <b>Cena: {{item?.price}} RSD</b>
+                <br>
+                <br>
+                <form [formGroup]="form">
+                    <label>Unesite količinu: </label>&nbsp;
+                    <input id="input-quantity" type="number" formControlName="quantity" />
+                    <div *ngIf="form.get('quantity').pending">
+                        Quantity is required.
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" [disabled]="form.invalid" (click)="addToCart(item.id)" class="btn btn-light btn-sm">Dodaj u korpu</button>
+            </div>
+        </div>
+    </div>
+</f-modal>

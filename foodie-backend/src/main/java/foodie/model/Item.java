@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,9 +29,14 @@ public class Item {
 
 	private ItemType type;
 
+	private String imageUrl;
+
 	// grams for food, mililiters for drinks
 	private String weight;
 
 	@Column(columnDefinition = "BOOLEAN")
 	private boolean deleted;
+
+	@ManyToOne
+	private Restaurant restaurant;
 }

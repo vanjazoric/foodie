@@ -9,6 +9,9 @@ import { JwtInterceptor } from './interceptors/JwtInterceptor';
 import { AuthModule } from './modules/auth/auth.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalModule } from './modules/modal/modal.module';
+import { RestaurantModule } from './modules/restaurant/restaurant.module';
+import { UserModule } from './modules/user/user.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    HomeModule
+    HomeModule,
+    ModalModule,
+    UserModule,
+    RestaurantModule
   ],
   providers: [/*{
     provide: HTTP_INTERCEPTORS,

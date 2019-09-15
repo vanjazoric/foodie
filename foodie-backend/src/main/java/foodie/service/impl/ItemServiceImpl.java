@@ -1,10 +1,10 @@
 package foodie.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,8 +55,19 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public java.util.List<ItemResponse> itemsToItemsResponse(java.util.List<Item> items) {
-		return modelMapper.map(items, new TypeToken<List<ItemResponse>>() {
-		}.getType());
+		List<ItemResponse> responseItems = new ArrayList<ItemResponse>();
+		for (Item item : items) {
+			ItemResponse itemResponse = new ItemResponse();
+			itemResponse.setId(item.getId());
+			itemResponse.setName(item.getName());
+			itemResponse.setPrice(item.getPrice());
+			itemResponse.setDescription(item.getDescription());
+			itemResponse.setWeight(item.getWeight());
+			itemResponse.setRestaurantId(item.getRestaurant().getId());
+			itemResponse.setRestaurantName(item.getRestaurant().getName());
+			responseItems.add(itemResponse);
+		}
+		return responseItems;
 	}
 
 }

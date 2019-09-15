@@ -6,9 +6,9 @@ import lombok.Setter;
 @Setter
 @Getter
 public class UserResponse {
-
+	
 	private String username;
-
+	
 	private String email;
 
 	private String firstName;
@@ -17,6 +17,6 @@ public class UserResponse {
 
 	private String phoneNumber;
 
-	private String image;
+	private String imageUrl;
 
 }

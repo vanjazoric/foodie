@@ -1,0 +1,80 @@
+<div class="container">
+    <h3>{{restaurant?.name}}</h3>
+    <hr>
+    <div class="row">
+        <div class="col-4">
+            <img [src]="restaurant?.logo != null ? restaurant.logo : defaultLogo" class="restaurant-logo" alt="restaurant logo">
+        </div>
+        <div class="col-8 restaurant-data">
+            Adresa: <b>{{restaurant?.address}}, Novi Sad</b>
+            <br> Kategorija:
+            <b>{{category}}
+            </b> </div>
+    </div>
+    <hr>
+
+</div>
+<div class="items-container">
+    <h5 class="item-type">HRANA</h5>
+    <div class="row food-items">
+        <div class="row" *ngIf="restaurant?.foodItems == 0">
+            Restoran trenutno nema nijedno jelo dostupno za dostavu.
+        </div>
+        <div *ngFor="let item of restaurant?.foodItems" class="col-3 text-center item">
+            <img [src]="item.imageUrl != null ? item.imageUrl : defaultLogo" class="item-image" alt="item image">
+            <h6>{{item.name}}</h6>
+            <p class="description">{{item.description}}</p>
+            <p>{{item.weight}}</p>
+            <b>{{item.price}} RSD</b>
+            <br>
+            <button type="button" (click)="openModal(item.id)" class="btn btn-light btn-sm">Dodaj u korpu</button>
+        </div>
+    </div>
+    <hr>
+    <h5 class="item-type">PIĆE</h5>
+    <div class="row">
+        <b *ngIf="restaurant?.drinks == 0">
+            Restoran trenutno nema nijedno piće dostupno za dostavu.
+        </b>
+        <div *ngFor="let item of restaurant?.drinks" class="col-3 text-center item">
+            <img [src]="item.imageUrl != null ? item.imageUrl : defaultLogo" class="item-image" alt="item image">
+            <h6>{{item.name}}</h6>
+            <p class="description">{{item.description}}</p>
+            <p>{{item.weight}}</p>
+            <b>{{item.price}} RSD</b>
+            <br>
+            <button type="button" (click)="openModal(item.id)" class="btn btn-light btn-sm">Dodaj u korpu</button>
+        </div>
+    </div>
+</div>
+
+
+<f-modal id="restaurant-item-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{item?.name}}</h5>
+                <button type="button" (click)="closeModal('restaurant-item-modal');" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Opis: {{item?.description}}</p>
+                <p>Težina: {{item?.weight}}</p>
+                <b>Cena: {{item?.price}} RSD</b>
+                <br>
+                <br>
+                <form [formGroup]="form">
+                    <label>Unesite količinu: </label>&nbsp;
+                    <input id="input-quantity" type="number" formControlName="quantity" />
+                    <div *ngIf="form.get('quantity').pending">
+                        Quantity is required.
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" [disabled]="form.invalid" (click)="addToCart(itemId)" class="btn btn-light btn-sm">Ok</button>
+            </div>
+        </div>
+    </div>
+</f-modal>

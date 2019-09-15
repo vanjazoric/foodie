@@ -59,8 +59,7 @@
     padding-left: 20px;
 }
 
-#search-restaurants-button,
-#search-items-button {
+.btn-sm {
     background-color: #ECA106;
 }
 
@@ -93,10 +92,32 @@ fa-icon {
 }
 
 .popular {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    margin-bottom: 30px;
 }
 
 .listing {
-    padding: 20px;
+    padding-right: 10px;
+}
+
+h6 {
+    min-height: 39px;
+}
+
+.price {
+    margin-bottom: 0px;
+}
+
+.restaurant-link {
+    color: black;
+    margin-left: 5px;
+}
+
+.item-link {
+    cursor: pointer;
+    color: #ECA106 !important;
+}
+
+#input-quantity {
+    width: 50px;
 }
