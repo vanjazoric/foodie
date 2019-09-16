@@ -1,1 +1,1 @@
-INSERT INTO `my_service`.`user` (`id`, `email`, `first_name`, `last_name`, `phone_number`, `username`, `image_url`) VALUES ('1', 'vanja_zoric@hotmail.com', 'Vanja', 'Zoric', '0643891303', 'user2', 'http://localhost:9000/images/user2');
+INSERT INTO `my_service`.`user` (`id`, `email`, `first_name`, `last_name`, `phone_number`, `username`, `image_url`, `address`) VALUES ('1', 'vanja_zoric@hotmail.com', 'Vanja', 'Zoric', '0643891303', 'user2', 'http://localhost:9000/images/user2', 'Bulevar cara Lazara 29/104, Novi Sad');

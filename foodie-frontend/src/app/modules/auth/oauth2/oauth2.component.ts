@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ACCESS_TOKEN } from '../../../constants/constants';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ACCESS_TOKEN } from '../../../constants/constants';
 
 @Component({
   selector: 'app-oauth2',
@@ -14,7 +14,7 @@ export class OAuth2Component implements OnInit {
   token: string;
   error: string;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     console.log(this.route);
@@ -29,7 +29,7 @@ export class OAuth2Component implements OnInit {
 
     if (this.token) {
       localStorage.setItem(ACCESS_TOKEN, this.token);
-
+      this.router.navigate(['/home']);
     } else {
       console.log("error while getting token from oath2");
     }

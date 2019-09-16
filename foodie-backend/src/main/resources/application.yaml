@@ -43,8 +43,8 @@ spring:
             tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
             userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
           myService:
-            authorization-uri: http://localhost:9999/uaa/oauth/authorize
-            token-uri: http://localhost:9999/uaa/oauth/token
+            authorization-uri: http://localhost:9999/auth/oauth/authorize
+            token-uri: http://localhost:9999/auth/oauth/token
             user-info-uri: http://localhost:9000/user
             user-name-attribute: username
         resource:

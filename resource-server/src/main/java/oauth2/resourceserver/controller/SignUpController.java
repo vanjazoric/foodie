@@ -21,7 +21,7 @@ import oauth2.resourceserver.service.UserService;
 @Controller
 public class SignUpController {
 
-	static final String AUTH_LOGIN_URL = "http://localhost:9999/uaa/login";
+	static final String AUTH_LOGIN_URL = "http://localhost:9999/auth/login";
 
 	@Autowired
 	UserService userService;

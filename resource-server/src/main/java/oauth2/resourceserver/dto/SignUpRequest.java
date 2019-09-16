@@ -37,6 +37,9 @@ public class SignUpRequest {
 
 	@NotBlank(message = "{validation.phoneNumber.notEmpty}")
 	private String phoneNumber;
+	
+	@NotBlank(message = "{validation.address.notEmpty}")
+	private String address;
 
 	private MultipartFile image;
 

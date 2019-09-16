@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		source.registerCorsConfiguration("/**", config);
 		return new CorsFilter(source);
 	}
-	
+
 	@Bean
 	public TokenAuthenticationFilter tokenAuthenticationFilter() {
 		return new TokenAuthenticationFilter();
@@ -97,7 +97,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.disable().formLogin().disable().httpBasic().disable().exceptionHandling()
 				.authenticationEntryPoint(new RestAuthenticationEntryPoint()).and().authorizeRequests()
 				.antMatchers("/", "/error", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg",
-						"/**/*.html", "/**/*.css", "/**/*.js", "/items/popular", "/restaurants/**", "/items/image/**")
+						"/**/*.html", "/**/*.css", "/**/*.js", "/items/popular", "/restaurants/**", "/items/image/**",
+						"/users/image/**")
 				.permitAll().antMatchers("/auth/**", "/oauth2/**").permitAll().anyRequest().authenticated().and()
 				.oauth2Login().authorizationEndpoint().baseUri("/oauth2/authorize")
 				.authorizationRequestRepository(cookieAuthorizationRequestRepository()).and().redirectionEndpoint()

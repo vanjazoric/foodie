@@ -1,25 +1,24 @@
 INSERT INTO oauth_client_details
 	(client_id, client_secret, scope, authorized_grant_types,
 	web_server_redirect_uri, authorities, access_token_validity,
-	refresh_token_validity, additional_information, autoapprove)
+	refresh_token_validity, additional_information, autoapprove, user_id, client_name)
 VALUES
-	('fooClientIdPassword', '$2a$08$us0UjfG2tSE2qS76D.nI5uDiYJUPhvn8RBwJu323ePSCazOc2Ir9u', 'foo,read,write',
-	'password,authorization_code,refresh_token,client_credentials', 'http://localhost:8080/login', null, 36000, 36000, null, true);
+	('fooClientIdPassword', 'secret', 'foo,read,write',
+	'password,authorization_code,refresh_token,client_credentials', 'http://localhost:8080/login', null, 36000, 36000, null, true, null, null);
 INSERT INTO oauth_client_details
 	(client_id, client_secret, scope, authorized_grant_types,
 	web_server_redirect_uri, authorities, access_token_validity,
-	refresh_token_validity, additional_information, autoapprove)
+	refresh_token_validity, additional_information, autoapprove, user_id, client_name)
 VALUES
 	('sampleClientId', 'secret', 'read,write,foo,bar',
-	'implicit', 'http://localhost:8080/login', null, 36000, 36000, null, false);
+	'implicit', 'http://localhost:8080/login', null, 36000, 36000, null, false, null, false);
 INSERT INTO oauth_client_details
 	(client_id, client_secret, scope, authorized_grant_types,
 	web_server_redirect_uri, authorities, access_token_validity,
-	refresh_token_validity, additional_information, autoapprove)
+	refresh_token_validity, additional_information, autoapprove, user_id, client_name)
 VALUES
-	('barClientIdPassword', '$2a$08$us0UjfG2tSE2qS76D.nI5uDiYJUPhvn8RBwJu323ePSCazOc2Ir9u', 'bar,read,write',
-	'password,authorization_code,refresh_token', 'http://localhost:8080/oauth2/callback/myService', null, 36000, 36000, null, true);
-	
+	('barClientIdPassword', 'secret', 'bar,read,write',
+	'password,authorization_code,refresh_token', 'http://localhost:8080/oauth2/callback/myService', null, 36000, 36000, null, true, null, false);		
 	
 INSERT INTO role (`name`) VALUES('ROLE_USER');
 INSERT INTO role (`name`) VALUES('ROLE_ADMIN');

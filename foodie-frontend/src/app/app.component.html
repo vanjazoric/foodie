@@ -6,11 +6,6 @@
     <ul *ngIf="currentUser" class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item">
             <a class="nav-link user">
-                <img src="/assets/img/shopping-cart.png" class="shopping-cart" alt="shopping cart">
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link user">
                 {{currentUser.firstName}} {{currentUser.lastName}}
             </a>
         </li>
@@ -19,12 +14,15 @@
                 <img [src]="currentUser.imageUrl != null ? currentUser.imageUrl : defaultImage" class="rounded-circle z-depth-0" alt="avatar image">
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenu">
+                <a class="dropdown-item" href="/shopping-cart">
+                    <fa-icon [icon]=" faShoppingBasket"></fa-icon> Korpa
+                </a>
                 <a class="dropdown-item" href="/profile">
-                    <fa-icon [icon]=" faProfile"></fa-icon> My profile
+                    <fa-icon [icon]=" faProfile"></fa-icon>&nbsp;Moj profil
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" (click)="logout()">
-                    <fa-icon [icon]=" faSignOut "></fa-icon> Logout
+                    <fa-icon [icon]=" faSignOut "></fa-icon> Izloguj se
                 </a>
             </div>
         </li>

@@ -12,12 +12,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "oauth_client_details")
 public class CustomClientDetails implements ClientDetails {
@@ -59,9 +65,11 @@ public class CustomClientDetails implements ClientDetails {
 
 	@Column(name = "resource_ids")
 	private String resourceIds;
-	
-	@OneToOne
+
+	@ManyToOne
 	private User user;
+
+	private String clientName;
 
 	@Override
 	public String getClientId() {
@@ -128,44 +136,4 @@ public class CustomClientDetails implements ClientDetails {
 		return null;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
-	}
-
-	public void setClientSecret(String clientSecret) {
-		this.clientSecret = clientSecret;
-	}
-
-	public void setScope(String scope) {
-		this.scope = scope;
-	}
-
-	public void setRedirectUri(String redirectUri) {
-		this.redirectUri = redirectUri;
-	}
-
-	public void setAccessTokenValidity(Integer accessTokenValidity) {
-		this.accessTokenValidity = accessTokenValidity;
-	}
-
-	public void setRefreshTokenValidity(Integer refreshTokenValidity) {
-		this.refreshTokenValidity = refreshTokenValidity;
-	}
-
-	public void setAdditionalInformation(String additionalInformation) {
-		this.additionalInformation = additionalInformation;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
 }

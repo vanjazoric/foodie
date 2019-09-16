@@ -1,5 +1,5 @@
 <div class="middlePage">
-    <h2 class="panel-title">Please Sign In</h2>
+    <h3 class="panel-title">Prijavi se na Foodie - aplikaciju za naručivanje hrane online!</h3>
     <hr>
     <br>
     <div class="panel-body">
@@ -14,23 +14,26 @@
                 <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <fieldset>
 
-                        <input placeholder="Enter email" class="form-control input-md" type="text" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                        <input placeholder="Unesi email adresu" class="form-control input-md" type="text" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.required">Email adresa je obavezna</div>
                         </div>
                         <div class="spacing"></div>
-                        <input type="password" formControlName="password" placeholder="Enter password" class="form-control input-md" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <input type="password" formControlName="password" placeholder="Unesi lozinku" class="form-control input-md" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.required">Lozinka je obavezna</div>
                         </div>
-                        <div class="spacing"><a href="#"><small> Forgot Password?</small></a><br /></div>
-                        <button class="btn btn-light btn-sm pull-right">Login</button>
+                        <div class="spacing"><a href="#"><small> Zaboravio si lozinku?</small></a><br /></div>
+                        <button class="btn btn-light btn-sm pull-right">Uloguj se</button>
                         <p>
-                            &nbsp;Don't have account? <a routerLink="/register">Sign up here</a>
+                            &nbsp;Još uvek nemaš nalog? <a routerLink="/register">Registruj se ovde</a>
                         </p>
                     </fieldset>
                 </form>
             </div>
         </div>
     </div>
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+        Nalog sa unestom email adresom ne postoji.<br> Možete se prijaviti pomoću ponuđenih servisa ili
+        <a routerLink="/register" class="alert-link">kreirati nalog </a> na Foodie-u.</div>
 </div>

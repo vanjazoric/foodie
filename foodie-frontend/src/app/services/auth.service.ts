@@ -34,18 +34,16 @@ export class AuthService {
         // login successful if there's a jwt token in the response
         console.log(token);
         if (token.accessToken) {
-          console.log("AAAAAA" + token.accessToken);
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem(ACCESS_TOKEN, token.accessToken);
         }
       }));
   }
 
   getCurrentUser() {
-      return this.http.get<any>(API_BASE_URL + "/users/me").pipe(map(user => {
-        localStorage.setItem(CURRENT_USER, JSON.stringify(user));
-        this.currentUserSubject.next(user);
-      }));
+    return this.http.get<any>(API_BASE_URL + "/users/me").pipe(map(user => {
+      localStorage.setItem(CURRENT_USER, JSON.stringify(user));
+      this.currentUserSubject.next(user);
+    }));
   }
 
   logout() {

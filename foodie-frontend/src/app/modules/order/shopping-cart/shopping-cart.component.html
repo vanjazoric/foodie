@@ -1,0 +1,9 @@
+<div class="container">
+    <h3>Korpa</h3>
+    <div class="row" *ngIf="orderItems.length == 0">
+        {{this.message}}
+    </div>
+    <div *ngFor="let item of restaurantMap | keyvalue">
+        Key: <b>{{item.key}}</b>
+    </div>
+</div>

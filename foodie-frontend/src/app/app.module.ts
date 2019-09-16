@@ -12,10 +12,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalModule } from './modules/modal/modal.module';
 import { RestaurantModule } from './modules/restaurant/restaurant.module';
 import { UserModule } from './modules/user/user.module';
+import { OrderModule } from './modules/order/order.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,8 @@ import { UserModule } from './modules/user/user.module';
     HomeModule,
     ModalModule,
     UserModule,
-    RestaurantModule
+    RestaurantModule,
+    OrderModule
   ],
   providers: [/*{
     provide: HTTP_INTERCEPTORS,

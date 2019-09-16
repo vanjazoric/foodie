@@ -52,9 +52,9 @@ INSERT IGNORE INTO `foodie`.`restaurant_drinks` (`restaurant_id`, `drinks_id`) V
 INSERT IGNORE INTO `foodie`.`restaurant_drinks` (`restaurant_id`, `drinks_id`) VALUES ('5', '18');
 INSERT IGNORE INTO `foodie`.`restaurant_drinks` (`restaurant_id`, `drinks_id`) VALUES ('7', '19');
 
-INSERT IGNORE INTO `foodie`.`user` (`id`, `email`, `email_verified`, `first_name`, `last_name`, `password`, `phone_number`, `provider`, `username`, `role_id`) VALUES ('1', 'admin@gmail.com', '1', 'Admin', 'Admin', '$2y$08$4ivx.w3MfTFpiVkSedyRFepisMNLuI9osIat8cKs0IWOCWNYgH.mm', '0668929298', 'local', 'admin', '3');
-INSERT IGNORE INTO `foodie`.`user` (`id`, `email`, `email_verified`, `first_name`, `last_name`, `password`, `phone_number`, `provider`, `username`, `role_id`) VALUES ('2', 'delivery.guy@gmail.com', '1', 'Delivery', 'Guy', '$2y$08$4ivx.w3MfTFpiVkSedyRFepisMNLuI9osIat8cKs0IWOCWNYgH.mm', '0682528655', 'local', 'delivery_guy', '2');
-INSERT IGNORE INTO `foodie`.`user` (`id`, `email`, `email_verified`, `first_name`, `image_url`, `last_name`, `password`, `phone_number`, `provider`, `username`, `role_id`) VALUES ('3', 'customer@gmail.com', '1', 'Vanja', 'http://localhost:8080/image/3', 'Zorić', '$2y$08$4ivx.w3MfTFpiVkSedyRFepisMNLuI9osIat8cKs0IWOCWNYgH.m', '0643891303', 'local', 'vanja', '1');
+INSERT IGNORE INTO `foodie`.`user` (`id`, `email`, `email_verified`, `first_name`, `last_name`, `password`, `phone_number`, `provider`, `username`, `role_id`) VALUES ('1', 'admin@gmail.com', '1', 'Admin', 'Admin', '$2a$08$uwUphzrqwHL0uwB7n//m5.tBj2iZv2OU488jsyUcW0S2k.hmn.Pku', '0668929298', 'local', 'admin', '3');
+INSERT IGNORE INTO `foodie`.`user` (`id`, `email`, `email_verified`, `first_name`, `last_name`, `password`, `phone_number`, `provider`, `username`, `role_id`) VALUES ('2', 'delivery.guy@gmail.com', '1', 'Delivery', 'Guy', '$2a$08$uwUphzrqwHL0uwB7n//m5.tBj2iZv2OU488jsyUcW0S2k.hmn.Pku', '0682528655', 'local', 'delivery_guy', '2');
+INSERT IGNORE INTO `foodie`.`user` (`id`, `email`, `email_verified`, `first_name`, `image_url`, `last_name`, `password`, `phone_number`, `provider`, `username`, `role_id`) VALUES ('3', 'customer@gmail.com', '1', 'Vanja', 'http://localhost:9000/users/image/3', 'Zorić', '$2a$08$uwUphzrqwHL0uwB7n//m5.tBj2iZv2OU488jsyUcW0S2k.hmn.Pku', '0643891303', 'local', 'vanja', '1');
 INSERT IGNORE INTO `foodie`.`customer` (`id`) VALUES ('3');
 INSERT IGNORE INTO `foodie`.`delivery_guy` (`id`) VALUES ('2');
 

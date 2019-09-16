@@ -103,6 +103,7 @@ public class AuthServerApplication implements WebMvcConfigurer {
 		registry.addViewController("/client-registration").setViewName("client-registration");
 		registry.addViewController("/credentials").setViewName("credentials");
 		registry.addViewController("/apis").setViewName("apis");
+		registry.addViewController("/").setViewName("client-registration");
 	}
 
 	public static void main(String[] args) {
@@ -182,7 +183,9 @@ public class AuthServerApplication implements WebMvcConfigurer {
 
 		@Override
 		public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-			oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()").passwordEncoder(new BCryptPasswordEncoder(8));
+			oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+			// Encoding client secret
+			//.passwordEncoder(new BCryptPasswordEncoder(8));
 		}
 
 	}

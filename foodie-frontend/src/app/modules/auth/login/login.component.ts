@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
+    error: boolean = false;
     readonly GOOGLE_AUTH_URL = GOOGLE_AUTH_URL;
     readonly FACEBOOK_AUTH_URL = FACEBOOK_AUTH_URL;
     readonly MY_SERVICE_AUTH_URL = MY_SERVICE_AUTH_URL;
@@ -58,13 +59,15 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    console.log(this.returnUrl);
+                    if (this.returnUrl == "/") {
+                        this.router.navigate(['/home']);
+                    }
                     this.router.navigate([this.returnUrl]);
-                    console.log(data);
-                    console.log("You're successfully logged in!");
                 },
                 error => {
                     this.loading = false;
-                    console.log('Oops! Something went wrong. Please try again!');
+                    this.error = true;
                 });
     }
 }

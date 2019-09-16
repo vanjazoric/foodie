@@ -46,7 +46,10 @@
 			name="email" /><span th:if="${#fields.hasErrors('phoneNumber')}"
 			class="validation-error" th:errors="*{phoneNumber}"></span> <input
 			type="text" class="form-control mb-4" placeholder="Phone number"
-			name="phoneNumber" /> <label>Izaberi profilnu sliku: </label><input
+			name="phoneNumber" /> <span th:if="${#fields.hasErrors('address')}"
+			class="validation-error" th:errors="*{address}"></span> <input
+			type="text" class="form-control mb-4" placeholder="Address"
+			name="address" /> <label>Izaberi profilnu sliku: </label><input
 			type="file" id="choose-photo" name="image" multiple="multiple" /> <br />
 		<input type="hidden" id="csrf_token" name="${_csrf.parameterName}"
 			value="${_csrf.token}" /> <br /> <input
@@ -62,7 +65,7 @@
 		</div>
 		<div class="form-group">
 			<p class="text-center">
-				Already have account? <a href="http://localhost:9999/uaa/login"
+				Already have account? <a href="http://localhost:9999/auth/login"
 					id="login">Log in here</a>
 			</p>
 		</div>

@@ -1,0 +1,12 @@
+h3 {
+    margin-top: 30px;
+}
+
+hr {
+    border-bottom: 2px solid #ECA106;
+}
+
+.container {
+    max-width: 700px;
+    font-family: 'Nunito';
+}

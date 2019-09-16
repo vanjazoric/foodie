@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService {
 		user.setUsername(request.getUsername());
 		user.setEmail(request.getEmail());
 		user.setPhoneNumber(request.getPhoneNumber());
+		user.setAddress(request.getAddress());
 		user.setEmail(request.getEmail());
 		if (imageService.uploadImage(request.getImage(), request.getUsername())) {
 			user.setImageUrl(BASE_URL + "username");
@@ -81,7 +82,7 @@ public class UserServiceImpl implements UserService {
 
 	private boolean userExists(String username, String email) {
 		Boolean existsOnAuth = restTemplate.getForObject(
-				"http://localhost:9999/uaa/users/check-user?username=" + username + "&email=" + email, Boolean.class);
+				"http://localhost:9999/auth/users/check-user?username=" + username + "&email=" + email, Boolean.class);
 		User user = userRepository.findByEmail(email);
 		if (user != null || existsOnAuth) {
 			return true;
@@ -90,7 +91,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private boolean saveUserOnAuth(UserCredentialsRequest credentials) {
-		Boolean saveOnAuth = restTemplate.postForObject("http://localhost:9999/uaa/users/save-user", credentials,
+		Boolean saveOnAuth = restTemplate.postForObject("http://localhost:9999/auth/users/save-user", credentials,
 				Boolean.class);
 		if (saveOnAuth) {
 			return true;

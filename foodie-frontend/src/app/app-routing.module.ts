@@ -4,6 +4,7 @@ import { LoginComponent } from './modules/auth/login/login.component';
 import { OAuth2Component } from './modules/auth/oauth2/oauth2.component';
 import { HomeComponent } from './modules/home/home/home.component';
 import { RestaurantComponent } from './modules/restaurant/restaurant/restaurant.component';
+import { ShoppingCartComponent } from './modules/order/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'restaurant/:id',
     component: RestaurantComponent
+  },
+  {
+    path: 'shopping-cart',
+    component: ShoppingCartComponent
   }
 ];
 
