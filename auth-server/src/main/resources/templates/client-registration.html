@@ -50,7 +50,8 @@
 					<table class="modal-table">
 						<tr class="empty-row">
 							<td></td>
-							<td class="text-success copied" id="copied-id-message">Copied to clipboard.</td>
+							<td class="text-success copied" id="copied-id-message">Copied
+								to clipboard.</td>
 							<td></td>
 						</tr>
 						<tr>
@@ -69,12 +70,14 @@
 						</tr>
 						<tr class="empty-row">
 							<td></td>
-							<td class="text-success copied" id="copied-secret-message">Copied to clipboard.</td>
-								<td></td>
+							<td class="text-success copied" id="copied-secret-message">Copied
+								to clipboard.</td>
+							<td></td>
 						</tr>
 					</table>
-					<p>The client ID and client secret can always be accessed from
-						Credentials.</p>
+					<p>These are your credentials. Please copy and save them,
+						especially client secret! Only the client id will be visible to
+						you from Credentials tab.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
@@ -85,61 +88,100 @@
 	</div>
 
 	<script>
-		$(document).ready(function() {
-			var token = $("meta[name='_csrf.name']").attr("content");
-			var header = $("meta[name='_csrf_header']").attr("content");
-			$(document).ajaxSend(function(e, xhr, options) {
-				xhr.setRequestHeader(header, token);
-			});
-			$("#client-registration-form").submit(function(e) {
-				e.preventDefault();
-				$.ajax({
-					type : "POST",
-					data : $("form").serialize(),
-					url : "/auth/create-client",
-					statusCode : {
-						201 : function(data) {
-							$('#client-regitration-modal').modal('show');
-							$('.modal-table').show();
-							$('#client-id').append(data.clientId);
-							$('#client-secret').append(data.clientSecret);
-						}
-					},
-					error : function(jqxhr, textStatus, errThrown) {
-						console.log(textStatus);
-						console.log(errThrown);
-					}
-				});
-			});
+		$(document)
+				.ready(
+						function() {
+							var token = $("meta[name='_csrf.name']").attr(
+									"content");
+							var header = $("meta[name='_csrf_header']").attr(
+									"content");
+							$(document).ajaxSend(function(e, xhr, options) {
+								xhr.setRequestHeader(header, token);
+							});
+							$("#client-registration-form")
+									.submit(
+											function(e) {
+												e.preventDefault();
+												$
+														.ajax({
+															type : "POST",
+															data : $("form")
+																	.serialize(),
+															url : "/auth/create-client",
+															statusCode : {
+																201 : function(
+																		data) {
+																	$(
+																			'#client-regitration-modal')
+																			.modal(
+																					'show');
+																	$(
+																			'.modal-table')
+																			.show();
+																	$(
+																			'#client-id')
+																			.append(
+																					data.clientId);
+																	$(
+																			'#client-secret')
+																			.append(
+																					data.clientSecret);
+																}
+															},
+															error : function(
+																	jqxhr,
+																	textStatus,
+																	errThrown) {
+																console
+																		.log(textStatus);
+																console
+																		.log(errThrown);
+															}
+														});
+											});
 
-			$("#copy-client-id").click(function() {
-				var copyClientId = document.getElementById("client-id");
-				var selection = window.getSelection();
-				var range = document.createRange();
-				range.selectNodeContents(copyClientId);
-				selection.removeAllRanges();
-				selection.addRange(range);
-				var isCoppied = document.execCommand("copy");
-				if (isCoppied == true) {
-					$("#copied-id-message").show();
-					$('#copied-id-message').delay(3000).fadeOut('slow');
-				}
-			});
+							$("#copy-client-id").click(
+									function() {
+										var copyClientId = document
+												.getElementById("client-id");
+										var selection = window.getSelection();
+										var range = document.createRange();
+										range.selectNodeContents(copyClientId);
+										selection.removeAllRanges();
+										selection.addRange(range);
+										var isCoppied = document
+												.execCommand("copy");
+										if (isCoppied == true) {
+											$("#copied-id-message").show();
+											$('#copied-id-message').delay(3000)
+													.fadeOut('slow');
+										}
+									});
 
-			$("#copy-client-secret").click(function() {
-				var copyClientSecret = document.getElementById("client-secret");
-				var selection = window.getSelection();
-				var range = document.createRange();
-				range.selectNodeContents(copyClientSecret);
-				selection.removeAllRanges();
-				selection.addRange(range);
-				var isCoppied = document.execCommand("copy");
-				if (isCoppied == true) {
-					$("#copied-secret-message").show();
-					$('#copied-secret-message').delay(3000).fadeOut('slow');
-				}
-			});
-		});
+							$("#copy-client-secret")
+									.click(
+											function() {
+												var copyClientSecret = document
+														.getElementById("client-secret");
+												var selection = window
+														.getSelection();
+												var range = document
+														.createRange();
+												range
+														.selectNodeContents(copyClientSecret);
+												selection.removeAllRanges();
+												selection.addRange(range);
+												var isCoppied = document
+														.execCommand("copy");
+												if (isCoppied == true) {
+													$("#copied-secret-message")
+															.show();
+													$('#copied-secret-message')
+															.delay(3000)
+															.fadeOut('slow');
+												}
+											});
+						});
 	</script>
 
 </body>

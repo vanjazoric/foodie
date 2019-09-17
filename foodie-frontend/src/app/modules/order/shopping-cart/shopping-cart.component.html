@@ -1,9 +1,38 @@
 <div class="container">
     <h3>Korpa</h3>
+    <hr>
     <div class="row" *ngIf="orderItems.length == 0">
         {{this.message}}
     </div>
-    <div *ngFor="let item of restaurantMap | keyvalue">
-        Key: <b>{{item.key}}</b>
+    <div *ngFor="let r of restaurantMap | keyvalue">
+        <div class="row">
+            <div class="col-9">
+                <b id="restaurant-name">{{r.key}}</b>
+            </div>
+            <div class="col-3">
+                <button id="create-order" class="btn btn-outline-success btn-sm"> <img
+                        src="/assets/img/add.png" />Kreiraj
+                    porudzbinu</button>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Artikal</th>
+                    <th scope="col">Opis</th>
+                    <th scope="col">Cena</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of restaurantMap.get(r.key)">
+                    <th scope="row">2</th>
+                    <td>{{ item.itemName}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <br>
     </div>
 </div>

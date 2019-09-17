@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <div th:replace="fragments/head.html :: css-js"></div>
 </head>
@@ -6,33 +7,43 @@
 	<nav th:replace="fragments/head :: navbar"></nav>
 	<div th:replace="fragments/head :: sidebar(APIs)"></div>
 	<div class="container">
-		<p>API</p>
+		<h6>MyService API</h6>
+		<br>
+		<table class="table">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">HTTP method</th>
+					<th scope="col">Path</th>
+					<th scope="col">Description</th>
+					<th scope="col">Visibility</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="get-method">
+					<th scope="row" th:text="1"></th>
+					<td>GET</td>
+					<td><b>/user</b></td>
+					<td>Returns user's info</td>
+					<td>private</td>
+				</tr>
+				<tr class="get-method">
+					<th scope="row" th:text="2"></th>
+					<td>GET</td>
+					<td><b>/images/{username}</b></td>
+					<td>Returns user's photo</td>
+					<td>private</td>
+				</tr>
+				<tr class="post-method">
+					<th scope="row" th:text="3"></th>
+					<td>POST</td>
+					<td><b>/sign-up</b></td>
+					<td>Create account</td>
+					<td>public</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-
-	<script>
-		$(document).ready(function() {
-			$("form").submit(function(e) {
-				e.preventDefault();
-				$.ajax({
-					type : "POST",
-					data : $("form").serialize(),
-					url : "/auth/create-client",
-					statusCode : {
-						201 : function(data) {
-							$('#client-regitration-modal').modal('show');
-							$('.modal-table').show();
-							$('#client-id').append(data.clientId);
-							$('#client-secret').append(data.clientSecret);
-						}
-					},
-					error : function(jqxhr, textStatus, errThrown) {
-						console.log(textStatus);
-						console.log(errThrown);
-					}
-				});
-			});
-		});
-	</script>
 
 </body>
 </html>

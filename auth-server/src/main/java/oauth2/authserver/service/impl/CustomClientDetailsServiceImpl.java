@@ -1,13 +1,11 @@
 package oauth2.authserver.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +17,6 @@ import oauth2.authserver.service.CustomClientDetailsService;
 
 @Service
 public class CustomClientDetailsServiceImpl implements CustomClientDetailsService {
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	ModelMapper modelMapper;
@@ -41,7 +36,7 @@ public class CustomClientDetailsServiceImpl implements CustomClientDetailsServic
 	}
 
 	@Override
-	public String generateClientId() {
+	public String generateRandomHex() {
 		Random r = new Random();
 		StringBuffer sb = new StringBuffer();
 		while (sb.length() < 32) {
@@ -54,7 +49,6 @@ public class CustomClientDetailsServiceImpl implements CustomClientDetailsServic
 	private ClientCredentials convertToDto(CustomClientDetails details) {
 		ClientCredentials credentials = new ClientCredentials();
 		credentials.setClientId(details.getClientId());
-		credentials.setClientSecret(details.getClientSecret());
 		credentials.setClientSecretExpiresAt(0);
 		return credentials;
 

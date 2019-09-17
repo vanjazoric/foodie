@@ -23,5 +23,8 @@ public abstract class OAuth2UserInfo {
 
     public abstract String getPhoneNumber();
     
+    public abstract String getAddress();
+    
     public abstract String getImageUrl();
+   
 }

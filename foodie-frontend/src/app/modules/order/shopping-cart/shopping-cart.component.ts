@@ -12,7 +12,7 @@ export class ShoppingCartComponent implements OnInit {
 
   orderItems: OrderItem[] = null;
   message: string;
-  restaurantMap: any = new Map<String, Item[]>();
+  restaurantMap: any = new Map<String, OrderItem[]>();
 
   constructor() { }
 
@@ -32,13 +32,14 @@ export class ShoppingCartComponent implements OnInit {
 
     for (let i = 0; i < restaurants.length; i++) {
       for (let j = 0; j < this.orderItems.length; j++) {
+
         if (this.orderItems[j].restaurantName == restaurants[i]) {
           var list = [];
-          if (this.restaurantMap[restaurants[i]]) {
-            list = this.restaurantMap[restaurants[i]];
+          if (this.restaurantMap.get(restaurants[i])) {
+            list = this.restaurantMap.get(restaurants[i]);
           }
           list.push(this.orderItems[j]);
-          this.restaurantMap[restaurants[i]] = list;
+          this.restaurantMap.set(restaurants[i], list);
         }
       }
     }

@@ -3,6 +3,8 @@ package oauth2.authserver.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,25 +42,25 @@ public class ClientController {
 	public ResponseEntity<ClientCredentials> registerClient(@RequestParam("redirect-uri") String redirectUri,
 			@RequestParam("client-name") String clientName, Principal user) {
 		CustomClientDetails client = new CustomClientDetails();
-		client.setClientId(clientService.generateClientId());
-//		client.setClientSecret(passwordEncoder.encode(clientService.generateClientId()));
-		client.setClientSecret(clientService.generateClientId());
+		client.setClientId(clientService.generateRandomHex());
+		String generatedClientSecret = clientService.generateRandomHex();
+		client.setClientSecret(passwordEncoder.encode(generatedClientSecret));
 		client.setUser(userService.findByUsername(user.getName()));
 		client.setClientName(clientName);
 		client.setRedirectUri(redirectUri);
 		client.setAccessTokenValidity(3600);
 		client.setRefreshTokenValidity(3600);
 		ClientCredentials credentials = clientService.create(client);
+		credentials.setClientSecret(generatedClientSecret);
 		return new ResponseEntity<ClientCredentials>(credentials, HttpStatus.CREATED);
 	}
 
 	@GetMapping("credentials")
-	public ModelAndView getCredentials() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		List<ClientInfoResponse> credentials = clientService.findAllByUser(authentication.getName());
+	public ModelAndView getCredentials(Principal principal) {
+		List<ClientInfoResponse> clientsInfo  = clientService.findAllByUser(principal.getName());
 		ModelAndView model = new ModelAndView();
 		model.setViewName("credentials");
-		model.addObject("credentials", credentials);
+		model.addObject("clients", clientsInfo);
 		return model;
 	}
 

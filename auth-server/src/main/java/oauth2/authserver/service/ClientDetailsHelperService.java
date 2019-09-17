@@ -9,8 +9,8 @@ import oauth2.authserver.entity.CustomClientDetails;
 public interface ClientDetailsHelperService {
 
 	ClientCredentials create(CustomClientDetails client);
-
-	String generateClientId();
 	
 	List<ClientInfoResponse> findAllByUser(String username);
+
+	String generateRandomHex();
 }

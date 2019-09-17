@@ -7,6 +7,22 @@ hr {
 }
 
 .container {
-    max-width: 700px;
+    max-width: 850px;
     font-family: 'Nunito';
+}
+
+img {
+    margin-bottom: 3px;
+    max-width: 11px;
+    margin-right: 3px;
+}
+
+#restaurant-name {
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+#create-order {
+    width: 147px;
+    margin-bottom: 3px;
 }

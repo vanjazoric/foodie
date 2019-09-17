@@ -21,7 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -101,9 +100,8 @@ public class AuthServerApplication implements WebMvcConfigurer {
 		registry.addViewController("/login").setViewName("login");
 		registry.addViewController("/oauth/confirm_access").setViewName("authorize");
 		registry.addViewController("/client-registration").setViewName("client-registration");
-		registry.addViewController("/credentials").setViewName("credentials");
 		registry.addViewController("/apis").setViewName("apis");
-		registry.addViewController("/").setViewName("client-registration");
+		// registry.addViewController("/").setViewName("client-registration");
 	}
 
 	public static void main(String[] args) {
@@ -116,10 +114,10 @@ public class AuthServerApplication implements WebMvcConfigurer {
 
 		@Autowired
 		private CustomUserDetailsService userDetailsService;
-		
+
 		@Bean
 		PasswordEncoder passwordEncoder() {
-		    return new BCryptPasswordEncoder();
+			return new BCryptPasswordEncoder();
 		}
 
 		@Bean
@@ -133,7 +131,7 @@ public class AuthServerApplication implements WebMvcConfigurer {
 
 			http.formLogin().loginPage("/login").permitAll().and().requestMatchers()
 					.antMatchers("/login", "/logout", "/user", "/oauth/authorize", "/oauth/confirm_access",
-							"/client-registration", "/create-client")
+							"/client-registration", "/create-client", "/credentials")
 					.and().authorizeRequests().anyRequest().authenticated().and().logout().logoutUrl("/logout")
 					.logoutSuccessUrl("/login").invalidateHttpSession(true).deleteCookies("JSESSIONID").and()
 					.httpBasic().disable();
@@ -183,9 +181,8 @@ public class AuthServerApplication implements WebMvcConfigurer {
 
 		@Override
 		public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-			oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
-			// Encoding client secret
-			//.passwordEncoder(new BCryptPasswordEncoder(8));
+			oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()")
+					.passwordEncoder(new BCryptPasswordEncoder(8));
 		}
 
 	}
