@@ -1,0 +1,17 @@
+<div class="container">
+    <h3>Kategorija: {{category}}</h3>
+    <br>
+    <div *ngFor="let r of restaurants">
+        <hr>
+        <div class="row">
+            <div class="col-4">
+                <img [src]="r?.logo != null ? r.logo : defaultLogo" class="restaurant-logo" alt="restaurant logo">
+            </div>
+            <div class="col-8 restaurant-data">
+                Naziv: <a [routerLink]="['/restaurant', r.id]" class="alert-link"><b>{{r?.name}}</b></a><br> Adresa:
+                <b>{{r?.address}}, Novi Sad</b>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
