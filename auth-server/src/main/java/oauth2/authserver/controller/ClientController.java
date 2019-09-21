@@ -47,7 +47,7 @@ public class ClientController {
 		client.setAccessTokenValidity(3600);
 		client.setRefreshTokenValidity(3600);
 		client.setAuthorizedGrantTypes("authorization_code");
-		client.setScope("bar,read,write");
+		client.setScope("profile_picture,phone_number,address");
 		ClientCredentials credentials = clientService.create(client);
 		credentials.setClientSecret(generatedClientSecret);
 		return new ResponseEntity<ClientCredentials>(credentials, HttpStatus.CREATED);
