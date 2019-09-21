@@ -3,6 +3,7 @@ package foodie.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -29,6 +30,11 @@ public class RestaurantController {
 	@GetMapping("{id}")
 	public ResponseEntity<Restaurant> getRestaurant(@PathVariable Long id) {
 		return new ResponseEntity<Restaurant>(restaurantService.findById(id), HttpStatus.OK);
+	}
+	
+	@GetMapping("category/{category}")
+	public ResponseEntity<List<Restaurant>> getRestaurants(@PathVariable int category) {
+		return new ResponseEntity<List<Restaurant>>(restaurantService.findAllByCategoryValue(category), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "logo/{id}")

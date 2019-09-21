@@ -1,5 +1,7 @@
 package foodie.service;
 
+import java.util.List;
+
 import foodie.model.Restaurant;
 
 public interface RestaurantService {
@@ -11,4 +13,6 @@ public interface RestaurantService {
 	Restaurant update(Restaurant restaurant);
 
 	void delete(Long id);
+
+	List<Restaurant> findAllByCategoryValue(int category);
 }

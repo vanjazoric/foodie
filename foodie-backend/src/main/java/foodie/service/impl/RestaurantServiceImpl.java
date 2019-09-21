@@ -1,5 +1,7 @@
 package foodie.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,4 +38,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public Restaurant findById(Long id) {
 		return restaurantRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Restaurant", "id", id));
 	}
+
+	@Override
+	public List<Restaurant> findAllByCategoryValue(int category) {
+		return restaurantRepository.findAllByCategoryValue(category);
+	}
+	
+	
 }

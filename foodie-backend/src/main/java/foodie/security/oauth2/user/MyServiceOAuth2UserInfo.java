@@ -31,12 +31,14 @@ public class MyServiceOAuth2UserInfo extends OAuth2UserInfo {
 	public String getPhoneNumber() {
 		return (String) attributes.get("phoneNumber");
 	}
-	
+
 	@Override
 	public String getImageUrl() {
-		//if (attributes.containsKey("imageUrl")) {
-			return (String) attributes.get("imageUrl");
-	//	}
-	//	return null;
+		return (String) attributes.get("imageUrl");
+	}
+
+	@Override
+	public String getAddress() {
+		return (String) attributes.get("address");
 	}
 }

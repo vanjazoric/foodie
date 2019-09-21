@@ -58,15 +58,15 @@ INSERT IGNORE INTO `foodie`.`user` (`id`, `email`, `email_verified`, `first_name
 INSERT IGNORE INTO `foodie`.`customer` (`id`) VALUES ('3');
 INSERT IGNORE INTO `foodie`.`delivery_guy` (`id`) VALUES ('2');
 
-INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `customer_id`, `delivery_guy_id`) VALUES ('1', 'Lift ne radi', '0', '3', '2');
-INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `customer_id`, `delivery_guy_id`) VALUES ('2', 'Lift ne radi', '0', '3', '2');
-INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `customer_id`, `delivery_guy_id`) VALUES ('3', 'Lift ne radi', '0', '3', '2');
-INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `customer_id`, `delivery_guy_id`) VALUES ('4', 'Lift ne radi', '0', '3', '2');
-INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `customer_id`, `delivery_guy_id`) VALUES ('5', 'Lift ne radi', '0', '3', '2');
-INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `customer_id`, `delivery_guy_id`) VALUES ('6', 'Lift ne radi', '0', '3', '2');
-INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `customer_id`, `delivery_guy_id`) VALUES ('7', 'Lift ne radi', '0', '3', '2');
-INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `customer_id`, `delivery_guy_id`) VALUES ('8', 'Lift ne radi', '0', '3', '2');
-INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `customer_id`, `delivery_guy_id`) VALUES ('9', 'Lift ne radi', '0', '3', '2');
+INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `amount`, `customer_id`, `delivery_guy_id`) VALUES ('1', 'Lift ne radi', '0', '1250.00', '3', '2');
+INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `amount`, `customer_id`, `delivery_guy_id`) VALUES ('2', 'Lift ne radi', '0', '990.00', '3', '2');
+INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `amount`, `customer_id`, `delivery_guy_id`) VALUES ('3', 'Lift ne radi', '0', '2250.00', '3', '2');
+INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `amount`, `customer_id`, `delivery_guy_id`) VALUES ('4', 'Lift ne radi', '0', '760.00', '3', '2');
+INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `amount`, `customer_id`, `delivery_guy_id`) VALUES ('5', 'Lift ne radi', '0', '253.00', '3', '2');
+INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `amount`, `customer_id`, `delivery_guy_id`) VALUES ('6', 'Lift ne radi', '0', '1005.00', '3', '2');
+INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `amount`, `customer_id`, `delivery_guy_id`) VALUES ('7', 'Lift ne radi', '0', '1250.00', '3', '2');
+INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `amount`, `customer_id`, `delivery_guy_id`) VALUES ('8', 'Lift ne radi', '0', '990.00', '3', '2');
+INSERT IGNORE INTO `foodie`.`orders` (`id`, `note`, `status`, `amount`, `customer_id`, `delivery_guy_id`) VALUES ('9', 'Lift ne radi', '0', '1300.00', '3', '2');
 
 INSERT IGNORE INTO `foodie`.`order_item` (`id`, `quantity`, `item_id`) VALUES ('1', '1', '1');
 INSERT IGNORE INTO `foodie`.`order_item` (`id`, `quantity`, `item_id`) VALUES ('2', '2', '16');

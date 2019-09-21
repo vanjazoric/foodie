@@ -5,6 +5,8 @@ import { OAuth2Component } from './modules/auth/oauth2/oauth2.component';
 import { HomeComponent } from './modules/home/home/home.component';
 import { RestaurantComponent } from './modules/restaurant/restaurant/restaurant.component';
 import { ShoppingCartComponent } from './modules/order/shopping-cart/shopping-cart.component';
+import { ProfileComponent } from './modules/user/profile/profile.component';
+import { RestaurantsComponent } from './modules/restaurant/restaurants/restaurants.component';
 
 const routes: Routes = [
   {
@@ -24,8 +26,16 @@ const routes: Routes = [
     component: RestaurantComponent
   },
   {
+    path: 'restaurants/:category',
+    component: RestaurantsComponent
+  },
+  {
     path: 'shopping-cart',
     component: ShoppingCartComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   }
 ];
 

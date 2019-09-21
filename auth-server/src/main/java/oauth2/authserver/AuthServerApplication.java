@@ -68,13 +68,8 @@ public class AuthServerApplication implements WebMvcConfigurer {
 		templateResolver.setApplicationContext(applicationContext);
 		templateResolver.setPrefix("classpath:/templates/");
 		templateResolver.setSuffix(".html");
-		/*
-		 * HTML is the default value, added here for the sake of clarity.
-		 * templateResolver.setTemplateMode(TemplateMode.HTML); // Template cache is
-		 * true by default. Set to false if you want // templates to be automatically
-		 * updated when modified.
-		 */
-		templateResolver.setCacheable(true);
+		// automatically update templates when they are modified
+		templateResolver.setCacheable(false);
 		return templateResolver;
 	}
 

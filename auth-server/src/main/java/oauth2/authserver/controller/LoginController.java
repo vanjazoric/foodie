@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginController {
-	
+
 	@GetMapping("/login-page")
 	public String registerClient(@RequestParam String registered) {
 		return "redirect:/login?registered=true";

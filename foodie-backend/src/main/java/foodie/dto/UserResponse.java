@@ -20,5 +20,7 @@ public class UserResponse {
 	private String imageUrl;
 	
 	private String role;
+	
+	private String address;
 
 }

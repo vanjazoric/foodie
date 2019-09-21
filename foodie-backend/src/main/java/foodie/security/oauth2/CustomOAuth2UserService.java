@@ -14,8 +14,10 @@ import org.springframework.util.StringUtils;
 
 import foodie.exception.OAuth2AuthenticationProcessingException;
 import foodie.model.AuthProvider;
+import foodie.model.Customer;
 import foodie.model.Role;
 import foodie.model.User;
+import foodie.repository.CustomerRepository;
 import foodie.repository.RoleRepository;
 import foodie.repository.UserRepository;
 import foodie.security.UserPrincipal;
@@ -27,6 +29,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private CustomerRepository customerRepository;
 
 	@Autowired
 	private RoleRepository roleRepository;
@@ -57,13 +62,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 		User user;
 		if (userOptional.isPresent()) {
 			user = userOptional.get();
-			if (!user.getProvider()
-					.equals(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))) {
-				throw new OAuth2AuthenticationProcessingException(
-						"Looks like you're signed up with " + user.getProvider() + " account. Please use your "
-								+ user.getProvider() + " account to login.");
-			}
-			user = updateExistingUser(user, oAuth2UserInfo);
+			user = updateExistingUser(oAuth2UserRequest, user, oAuth2UserInfo);
 		} else {
 			user = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
 		}
@@ -72,23 +71,31 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 	}
 
 	private User registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
-		User user = new User();
+		Customer user = new Customer();
 		user.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
 		user.setProviderId(oAuth2UserInfo.getId());
 		user.setFirstName(oAuth2UserInfo.getFirstName());
 		user.setLastName(oAuth2UserInfo.getLastName());
 		user.setEmail(oAuth2UserInfo.getEmail());
 		user.setImageUrl(oAuth2UserInfo.getImageUrl());
+		user.setPhoneNumber(oAuth2UserInfo.getPhoneNumber());
+		user.setAddress(oAuth2UserInfo.getAddress());
 		Role role = roleRepository.findByName("ROLE_CUSTOMER");
 		user.setRole(role);
+
 		return userRepository.save(user);
 	}
 
-	private User updateExistingUser(User existingUser, OAuth2UserInfo oAuth2UserInfo) {
-		existingUser.setFirstName(oAuth2UserInfo.getFirstName());
-		existingUser.setLastName(oAuth2UserInfo.getLastName());
-		existingUser.setImageUrl(oAuth2UserInfo.getImageUrl());
-		return userRepository.save(existingUser);
+	private User updateExistingUser(OAuth2UserRequest oAuth2UserRequest, User user, OAuth2UserInfo oAuth2UserInfo) {
+		user.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
+		user.setProviderId(oAuth2UserInfo.getId());
+		user.setFirstName(oAuth2UserInfo.getFirstName());
+		user.setLastName(oAuth2UserInfo.getLastName());
+		user.setEmail(oAuth2UserInfo.getEmail());
+		user.setImageUrl(oAuth2UserInfo.getImageUrl());
+		user.setPhoneNumber(oAuth2UserInfo.getPhoneNumber());
+		user.setAddress(oAuth2UserInfo.getAddress());
+		return userRepository.save(user);
 	}
 
 }

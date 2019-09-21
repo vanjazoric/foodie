@@ -1,0 +1,35 @@
+<div class="container">
+    <h3>Moj profil</h3>
+    <hr>
+    <br>
+    <div *ngIf="error==false" class="alert alert-success" role="alert">
+        Narudžba je uspešno kreirana. Spisak svih vaših narudžbi možete pogledati na <a routerLink="/profile" class="alert-link">svom profilu.</a>
+    </div>
+    <div *ngIf="error==true" class="alert alert-success" role="alert">
+        Došlo je do greške prilikom kreiranja narudžbe. Pokušajte ponovo.
+    </div>
+    <div class="row" *ngIf="orders?.length == 0">
+        {{this.message}}
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="w-20" scope="col">Restoran</th>
+                <th class="w-30" scope="col">Datum</th>
+                <th class="w-25" scope="col">Status</th>
+                <th class="w-25" scope="col">Iznos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let o of orders">
+                <td>{{ o.orderItems[0].restaurantName}}</td>
+                <td>{{ o.orderDate | date:'medium'}}</td>
+                <td>Kreirana</td>
+                <td>{{ o.amount}}.00 RSD</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+</div>

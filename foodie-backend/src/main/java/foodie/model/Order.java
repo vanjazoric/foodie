@@ -3,6 +3,7 @@ package foodie.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<OrderItem> orderItems;
 
 	@CreatedDate
@@ -44,6 +45,8 @@ public class Order {
 	private DeliveryGuy deliveryGuy;
 
 	private OrderStatus status;
+
+	private double amount;
 
 	private String note;
 

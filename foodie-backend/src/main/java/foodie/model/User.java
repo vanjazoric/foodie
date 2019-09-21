@@ -56,6 +56,8 @@ public class User {
 	private String imageUrl;
 
 	private String phoneNumber;
+	
+	private String address;
 
 	@Column(nullable = false, columnDefinition = "BOOLEAN")
 	private Boolean emailVerified = false;

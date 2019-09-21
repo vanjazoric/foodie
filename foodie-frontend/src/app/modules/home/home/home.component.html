@@ -11,23 +11,35 @@
     <div class="col-md-7">
         <div class="choose-category">
             <div class="row" id="categories">
-                <div class="col-md-2 text-center"><img src="/assets/img/cook.png">
-                    <p>domaća kuhinja</p>
+                <div class="col-md-2 text-center">
+                    <a class="restaurant-link" [routerLink]="['/restaurants', 0]"><img src="/assets/img/cook.png">
+                        <p>domaća kuhinja</p>
+                    </a>
                 </div>
-                <div class="col-md-2 text-center"><img src="/assets/img/fast-food.png">
-                    <p>brza hrana</p>
+                <div class="col-md-2 text-center">
+                    <a class="restaurant-link" [routerLink]="['/restaurants', 1]"><img src="/assets/img/fast-food.png">
+                        <p>brza hrana</p>
+                    </a>
                 </div>
-                <div class="col-md-2 text-center"><img src="/assets/img/chinese.png">
-                    <p>kineski restoran</p>
+                <div class="col-md-2 text-center">
+                    <a class="restaurant-link" [routerLink]="['/restaurants', 2]"><img src="/assets/img/chinese.png">
+                        <p>kineski restoran</p>
+                    </a>
                 </div>
-                <div class="col-md-2 text-center"><img src="/assets/img/pizza.png">
-                    <p>italijanski restoran</p>
+                <div class="col-md-2 text-center">
+                    <a class="restaurant-link" [routerLink]="['/restaurants', 3]"><img src="/assets/img/pizza.png">
+                        <p>italijanski restoran</p>
+                    </a>
                 </div>
-                <div class="col-md-2 text-center"><img src="/assets/img/vegetarian.png">
-                    <p>vegetarijanski restoran</p>
+                <div class="col-md-2 text-center">
+                    <a class="restaurant-link" [routerLink]="['/restaurants', 5]"><img src="/assets/img/vegetarian.png">
+                        <p>vegetarijanski restoran</p>
+                    </a>
                 </div>
-                <div class="col-md-2 text-center"><img src="/assets/img/cupcake.png">
-                    <p>poslastičarnica</p>
+                <div class="col-md-2 text-center">
+                    <a class="restaurant-link" [routerLink]="['/restaurants', 4]"><img src="/assets/img/cupcake.png">
+                        <p>poslastičarnica</p>
+                    </a>
                 </div>
             </div>
             <br />

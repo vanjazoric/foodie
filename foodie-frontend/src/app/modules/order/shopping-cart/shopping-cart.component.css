@@ -24,5 +24,10 @@ img {
 
 #create-order {
     width: 147px;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
+    margin-left: -12px;
+}
+
+.ok {
+    background-color: #ECA106;
 }

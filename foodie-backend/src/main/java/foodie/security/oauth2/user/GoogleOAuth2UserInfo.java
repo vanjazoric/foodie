@@ -35,7 +35,11 @@ public class GoogleOAuth2UserInfo extends OAuth2UserInfo {
 
 	@Override
 	public String getPhoneNumber() {
-		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getAddress() {
 		return null;
 	}
 }

@@ -189,3 +189,16 @@ thead th {
 .navbar-right {
 	margin-left: 1140px;
 }
+
+.authorize {
+	margin: 0 auto;
+	width: 450px;
+	margin-top: 80px;
+	padding-top: 10px !important;
+	border-color: #E5E5E5;
+}
+
+.authorize p, .authorize b {
+	display: inline;
+	font-size: 19px;
+}

@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -128,7 +127,7 @@ public class CustomClientDetails implements ClientDetails {
 
 	@Override
 	public boolean isAutoApprove(String scope) {
-		return true;
+		return this.autoApprove;
 	}
 
 	@Override

@@ -6,4 +6,5 @@ export class User {
     image: string;
     phoneNumber: string;
     role: string;
+    address: string;
 }

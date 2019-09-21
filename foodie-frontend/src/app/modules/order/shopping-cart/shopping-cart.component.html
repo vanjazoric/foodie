@@ -1,6 +1,13 @@
 <div class="container">
     <h3>Korpa</h3>
     <hr>
+    <br>
+    <div *ngIf="error==false" class="alert alert-success" role="alert">
+        Narudžba je uspešno kreirana. Spisak svih vaših narudžbi možete pogledati na <a routerLink="/profile" class="alert-link">svom profilu.</a>
+    </div>
+    <div *ngIf="error==true" class="alert alert-success" role="alert">
+        Došlo je do greške prilikom kreiranja narudžbe. Pokušajte ponovo.
+    </div>
     <div class="row" *ngIf="orderItems.length == 0">
         {{this.message}}
     </div>
@@ -10,7 +17,7 @@
                 <b id="restaurant-name">{{r.key}}</b>
             </div>
             <div class="col-3">
-                <button id="create-order" class="btn btn-outline-success btn-sm"> <img
+                <button id="create-order" (click)="openModal(r.key)" class="btn btn-outline-success btn-sm"> <img
                         src="/assets/img/add.png" />Kreiraj
                     porudzbinu</button>
             </div>
@@ -18,16 +25,16 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Artikal</th>
-                    <th scope="col">Opis</th>
-                    <th scope="col">Cena</th>
+                    <th class="w-50" scope="col">Artikal</th>
+                    <th class="w-20" scope="col">Količina</th>
+                    <th class="w-25" scope="col">Cena</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of restaurantMap.get(r.key)">
-                    <th scope="row">2</th>
                     <td>{{ item.itemName}}</td>
+                    <td>{{ item.quantity}}</td>
+                    <td>{{ item.itemPrice}}.00 RSD</td>
                 </tr>
             </tbody>
         </table>
@@ -36,3 +43,47 @@
         <br>
     </div>
 </div>
+
+<f-modal id="create-order-modal" #createOrderModal class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kreiranje porudžbine</h5>
+                <button type="button" (click)="closeModal('create-order-modal');" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <b>Iznos: {{amount}}.00 RSD</b>
+                <br>
+                <br>
+                <br>
+                <h5>Podaci za dostavu:</h5>
+                <br>
+                <form>
+                    <div class="form-group row">
+                        <label for="note" class="col-sm-2 col-form-label">Napomena</label>
+                        <div class="col-sm-10">
+                            <input [(ngModel)]="note" name="note" type="text" class="form-control" id="inputEmail3" placeholder="Unesite napomenu (nije obavezno)">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="address" class="col-sm-2 col-form-label">Adresa</label>
+                        <div class="col-sm-10">
+                            <input [(ngModel)]="currentUser.address" name="address" type="text" class="form-control" id="address" placeholder="Ulica, broj, broj stana">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-2 col-form-label">Telefon</label>
+                        <div class="col-sm-10">
+                            <input [(ngModel)]="currentUser.phoneNumber" name="phone" type="text" class="form-control" id="phone" placeholder="Broj telefona">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" (click)="createOrder(restaurantName)" class="btn btn-light btn-sm ok">Kreiraj</button>
+            </div>
+        </div>
+    </div>
+</f-modal>

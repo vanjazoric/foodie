@@ -16,7 +16,7 @@ import { OrderModule } from './modules/order/order.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
