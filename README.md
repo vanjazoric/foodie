@@ -1,2 +1,2 @@
 # foodie
-Application for food delivery with multiple options for login
+An implementation of an authorization server, and its use in a web application for food ordering. The application also supports the usage of Google and Facebook authorization services. The idea of this work is to enhance the ease of use of a food ordering application, by automatically fetching the data from a chosen authorization service. That form of communication was accomplished through OAuth2 protocol.
