@@ -20,7 +20,6 @@ export class RestaurantsComponent implements OnInit {
     this.restaurantService.getRestaurants(category).subscribe(
       data => {
         this.restaurants = data;
-        console.log(data);
         this.category = <RestaurantCategory>RestaurantCategory[this.restaurants[0].category];
       },
       error => {

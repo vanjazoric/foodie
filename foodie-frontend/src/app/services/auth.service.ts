@@ -32,9 +32,9 @@ export class AuthService {
     return this.http.post<any>(API_BASE_URL + "/auth/login", loginRequest)
       .pipe(map(token => {
         // login successful if there's a jwt token in the response
-        console.log(token);
         if (token.accessToken) {
           localStorage.setItem(ACCESS_TOKEN, token.accessToken);
+          this.getCurrentUser().subscribe();
         }
       }));
   }

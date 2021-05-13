@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,8 +25,9 @@ public class RestaurantController {
 
 	@Autowired
 	RestaurantService restaurantService;
-	
-	static final String UPLOAD_DIR = "D://uploads/Foodie";
+
+	@Value("${uploadDir}")
+	private String UPLOAD_DIR;
 
 	@GetMapping("{id}")
 	public ResponseEntity<Restaurant> getRestaurant(@PathVariable Long id) {

@@ -3,13 +3,15 @@ package oauth2.resourceserver.service;
 import java.io.File;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ImageServiceImpl implements ImageService {
 
-	static final String UPLOAD_DIR = "D://uploads/MyService";
+	@Value("${uploadDir}")
+	private String UPLOAD_DIR;
 
 	@Override
 	public boolean uploadImage(MultipartFile image, String username) {

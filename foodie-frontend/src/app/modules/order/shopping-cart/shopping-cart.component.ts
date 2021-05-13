@@ -35,7 +35,6 @@ export class ShoppingCartComponent implements OnInit {
     listOfItems.forEach(element => {
       this.amount += (element.quantity * element.itemPrice);
     });
-    console.log(restName);
     this.modalService.open("create-order-modal");
   }
 
@@ -53,13 +52,10 @@ export class ShoppingCartComponent implements OnInit {
     order.userAddress = this.currentUser.address;
     order.userPhone = this.currentUser.phoneNumber;
     order.orderItems = this.restaurantMap.get(restName)
-    console.log(order);
     this.orderService.createOrder(order)
       .subscribe(
         data => {
-          console.log(data);
           this.restaurantMap.delete(restName);
-          console.log(this.restaurantMap);
           var currentItems = JSON.parse(localStorage.getItem('orderItems'));
           currentItems = currentItems.filter(function (obj) {
             return obj.restaurantName !== restName;
@@ -103,7 +99,6 @@ export class ShoppingCartComponent implements OnInit {
           this.restaurantMap.set(restaurants[i], list);
         }
       }
-      console.log(list);
     }
   }
 }

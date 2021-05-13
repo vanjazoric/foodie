@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
       .subscribe(
         data => {
           this.popularItems = data;
-          console.log(data);
         },
         error => {
           console.log('Oops! Something went wrong. Please try again!');
@@ -44,7 +43,6 @@ export class HomeComponent implements OnInit {
 
   openModal(id: number) {
     this.item = this.popularItems.find(x => x.id === id)
-    console.log(this.item);
     this.modalService.open("home-item-modal");
   }
 
@@ -72,8 +70,6 @@ export class HomeComponent implements OnInit {
     }
 
     this.closeModal('home-item-modal');
-    console.log(id);
-    console.log(this.item);
   }
 
   ngOnInit() {

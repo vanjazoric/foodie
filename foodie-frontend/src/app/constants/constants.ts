@@ -1,6 +1,7 @@
 export const API_BASE_URL = 'http://localhost:8080';
 export const ACCESS_TOKEN = 'accessToken';
 export const CURRENT_USER = 'currentUser';
+export const ORDER_ITEMS = 'orderItems';
 
 export const OAUTH2_REDIRECT_URI = 'http://localhost:4200/oauth2/redirect'
 

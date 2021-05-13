@@ -95,8 +95,8 @@ public class AuthServerApplication implements WebMvcConfigurer {
 		registry.addViewController("/login").setViewName("login");
 		registry.addViewController("/oauth/confirm_access").setViewName("authorize");
 		registry.addViewController("/client-registration").setViewName("client-registration");
-		registry.addViewController("/apis").setViewName("apis");
-		// registry.addViewController("/").setViewName("client-registration");
+		registry.addViewController("/apis").setViewName("APIs");
+		registry.addViewController("/").setViewName("client-registration");
 	}
 
 	public static void main(String[] args) {
@@ -125,7 +125,7 @@ public class AuthServerApplication implements WebMvcConfigurer {
 			// @formatter:off
 
 			http.formLogin().loginPage("/login").permitAll().and().requestMatchers()
-					.antMatchers("/login", "/logout", "/user", "/oauth/authorize", "/oauth/confirm_access",
+					.antMatchers("/", "/login", "/logout", "/user", "/oauth/authorize", "/oauth/confirm_access",
 							"/client-registration", "/create-client", "/credentials")
 					.and().authorizeRequests().anyRequest().authenticated().and().logout().logoutUrl("/logout")
 					.logoutSuccessUrl("/login").invalidateHttpSession(true).deleteCookies("JSESSIONID").and()

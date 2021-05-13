@@ -3,9 +3,9 @@ package foodie.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import foodie.dto.ItemResponse;
 import foodie.dto.UserResponse;
 import foodie.security.CurrentUser;
 import foodie.security.UserPrincipal;
@@ -27,8 +26,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
-	static final String UPLOAD_DIR = "D://uploads/Foodie";
+
+	@Value("${uploadDir}")
+	private String UPLOAD_DIR;
 
 	@GetMapping("/me")
 	public ResponseEntity<UserResponse> getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {

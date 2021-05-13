@@ -49,7 +49,7 @@
 			name="phoneNumber" /> <span th:if="${#fields.hasErrors('address')}"
 			class="validation-error" th:errors="*{address}"></span> <input
 			type="text" class="form-control mb-4" placeholder="Address"
-			name="address" /> <label>Izaberi profilnu sliku: </label><input
+			name="address" /> <label>Choose a profile picture: </label><input
 			type="file" id="choose-photo" name="image" multiple="multiple" /> <br />
 		<input type="hidden" id="csrf_token" name="${_csrf.parameterName}"
 			value="${_csrf.token}" /> <br /> <input

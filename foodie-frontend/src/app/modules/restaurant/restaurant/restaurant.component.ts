@@ -32,7 +32,6 @@ export class RestaurantComponent implements OnInit {
         this.restaurant = data;
         //this.restaurantLogo = '/assets/img/' + this.restaurant.logo;
         this.category = <RestaurantCategory>RestaurantCategory[this.restaurant.category];
-        console.log(this.restaurant.foodItems)
       },
       error => {
         console.log('Oops! Something went wrong. Please try again!');
